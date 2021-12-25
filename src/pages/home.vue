@@ -3,11 +3,6 @@
     <div class="center">
       <img src="../../static/img/dog.gif" alt="" class="">
       <h1>{{ msg }}</h1>
-      <div class="search">
-        <el-input placeholder="请输入内容" v-model="keyWord" clearable class="input-with-select" @change="onSearch">
-          <el-button slot="append" icon="el-icon-search" @click="onSearch"></el-button>
-        </el-input>
-      </div>
     </div>
     <div class="menu">
         <el-col v-for="(item,index) in menuList" :key="index" :span="6">
@@ -17,7 +12,7 @@
           </div>
         </el-col>
     </div>
-    
+
 
   </div>
 </template>
@@ -58,9 +53,7 @@ export default {
   methods: {
     toRouter(val) {
       this.$router.push(val);
-    },
-    onSearch() {
-    },
+    }
   },
   mounted() {
   }
@@ -81,7 +74,7 @@ export default {
 }
 .el-col {
   padding: 10px;
-  
+
 }
 .menu-item{
   border-radius: 4px;

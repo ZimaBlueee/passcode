@@ -41,7 +41,7 @@
 export default {
   data() {
     return {
-      msg: "电影搜索",
+      msg: "都是兄弟，别客气",
       keyWord: '',
       loading: false,
       tableData: []

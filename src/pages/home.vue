@@ -14,9 +14,9 @@
       <h2>Born to Love</h2>
     </div>
 
-    <el-row :gutter="900">
-      <el-col :span="6" :offset="4"><img src="../../static/img/ysl.jpg" alt="" class=""></el-col>
-      <el-col :span="6"><img src="../../static/img/vinas.jpg" alt="" class="" height="1385px" width="640px"></el-col>
+    <el-row>
+      <el-col :span="12" class="center"><img src="../../static/img/ysl.jpg" alt="" class=""></el-col>
+      <el-col :span="12" class="center"><img src="../../static/img/vinas.jpg" alt="" class="" height="1385px" width="640px"></el-col>
     </el-row>
 
 

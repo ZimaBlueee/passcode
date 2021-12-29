@@ -1,24 +1,14 @@
 <template>
-  <div class="calculator">
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="10">
-        <img src="../../static/img/hashiqi.gif" alt="" class="">
-      </el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="9">
+  <div class="calculator center">
+        <img src="../../static/img/hashiqi.gif" alt="" width="20%" style="min-width:200px" >
         <div>
           输入你的身高：
-          <el-input style="width: 95px;" placeholder="请输入" v-model="input" maxlength="3" show-word-limit></el-input>
+          <el-input style="width: 1rem;" placeholder="请输入" v-model="input" maxlength="3" show-word-limit></el-input>
           CM
         </div>
-      </el-col>
-    </el-row>
-    <el-row :gutter="20">
-      <el-col :span="6" :offset="11">
+
         <el-button type="success" plain @click="result">开始计算</el-button>
-      </el-col>
-    </el-row>
+
   </div>
 </template>
 
@@ -50,7 +40,8 @@ export default {
 <style lang="scss">
 
 .calculator {
-  font-size: 50px;
+  font-size: .3rem;
+  
   //margin: 100px 0px 400px;
 }
 

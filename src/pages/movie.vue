@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="center">
-      <img src="../../static/img/dog.gif" alt="" class="">
+      <img src="../../static/img/dog.gif" alt="" class=""  width="20%" style="min-width:200px">
       <h1>{{ msg }}</h1>
       <div class="search">
         <el-input placeholder="请输入内容" v-model="keyWord" clearable class="input-with-select" @change="onSearch">

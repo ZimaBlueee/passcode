@@ -15,15 +15,15 @@ html,body,#app{width:100%;height:100%;font-size:625%;}
     background-color: rgb(40, 46, 85);
 }
 .fontSize-20{
-    font-size: 20px;
+    font-size: .2rem;
 }
 .fontSize-14{
-    font-size: 14px;
+    font-size: .14rem;
 }
 .fontColor-w{
     color: white;
 }
 
 .el-loading-spinner .el-loading-text{
-    font-size: 16px !important;
+    font-size: .16rem !important;
 }

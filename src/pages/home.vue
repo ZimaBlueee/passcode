@@ -1,13 +1,11 @@
 <template>
   <div>
-    <div class="center">
-      <div class="block">
-        <el-carousel :interval="4000" type="card" height="700px">
-          <el-carousel-item v-for="item in imgList" :key="item.index">
-            <img :src="item.src" style="height:100%;width:100%;" alt="图片丢失了" :title="item.title"/>
-          </el-carousel-item>
-        </el-carousel>
-      </div>
+    <div class="block center">
+      <el-carousel :interval="4000" type="card" height="7rem" >
+        <el-carousel-item v-for="item in imgList" :key="item.index" >
+          <img :src="item.src" style="width:100%;height:100%" alt="图片丢失了" :title="item.title"/>
+        </el-carousel-item>
+      </el-carousel>
     </div>
 
     <div class="welcome-title">
@@ -15,8 +13,8 @@
     </div>
 
     <el-row>
-      <el-col :span="12" class="center"><img src="../../static/img/ysl.jpg" alt="" class=""></el-col>
-      <el-col :span="12" class="center"><img src="../../static/img/vinas.jpg" alt="" class="" height="1385px" width="640px"></el-col>
+      <el-col :span="12" class="center"><img src="../../static/img/ysl.jpg" alt="" class="" width="80%"></el-col>
+      <el-col :span="12" class="center"><img src="../../static/img/vinas.jpg" alt="" class="" width="80%"></el-col>
     </el-row>
 
 
@@ -102,11 +100,11 @@ export default {
 <style lang="scss">
 .search {
   width: 70%;
-  margin: 20px auto;
+  margin: .20rem auto;
 }
 
 .el-row {
-  margin-bottom: 20px;
+  margin-bottom: .20rem;
 
   &:last-child {
     margin-bottom: 0;
@@ -114,28 +112,28 @@ export default {
 }
 
 .el-col {
-  padding: 10px;
+  padding: .10rem;
 
 }
 
 .menu-item {
-  border-radius: 4px;
-  padding: 10px;
+  border-radius: .04rem;
+  padding: .10rem;
   text-align: center;
   color: aliceblue;
   cursor: pointer;
   box-shadow: 3px 3px 10px #8B8B8B;;
 
   i {
-    font-size: 50px;
+    font-size: .50rem;
   }
 }
 
 .el-carousel__item h3 {
   color: #475669;
-  font-size: 14px;
+  font-size: .14rem;
   opacity: 0.75;
-  line-height: 200px;
+  line-height: 2rem;
   margin: 0;
 }
 
@@ -149,8 +147,8 @@ export default {
 
 .welcome-title {
   text-align: center;
-  margin: 50px 0 50px;
-  font-size: 40px;
+  margin: .50rem 0 .50rem;
+  font-size: .40rem;
   color: #ccccd6;
 }
 </style>

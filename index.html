@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=0, maximum-scale=0, user-scalable=yes,shrink-to-fit=no"> -->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="static/public.css">
     <link rel="icon" href="../../static/img/teddy.svg">
@@ -12,3 +13,14 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script>
+// 根据不同设备的理想视口宽度动态设置根元素的`font-size`。
+let idealViewWidth = window.screen.width;
+const BASICVALUE = 1980;
+let rem = (idealViewWidth / BASICVALUE) * 100 ;
+
+document.documentElement.style.fontSize = rem > 30 ? rem+"px":"30px" ;
+
+
+console.log(rem > 30 ? rem+"px":"30px")
+</script>

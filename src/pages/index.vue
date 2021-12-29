@@ -2,12 +2,15 @@
   <div>
     <el-container>
       <el-header height="50px">
-        <i @click="notify">程序员类视频观看</i>
-        <i @click="notify">程序员类文档阅读</i>
-        <i @click="toRouter('/calculator')">身高计算器</i>
-        <i @click="toRouter('/movie')">影视搜索</i>
-        <i @click="toRouter('/home')">主页</i>
         <img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">
+        <div class="navbar">
+          <span @click="notify">程序员类视频观看</span>
+          <span @click="notify">程序员类文档阅读</span>
+          <span @click="toRouter('/calculator')">身高计算器</span>
+          <span @click="toRouter('/movie')">影视搜索</span>
+          <span @click="toRouter('/home')">主页</span>
+        </div>
+        <div class="clean"></div>
       </el-header>
       <el-main>
         <router-view></router-view>
@@ -42,20 +45,22 @@ export default {
 
 <style lang="scss">
 .el-header {
-
-  i {
-    font-size: 30px;
-    color: #222222;
-    float: right;
-    line-height: 50px;
-    cursor: pointer;
-    margin:10px 50px 10px;
-    font-style: normal;
+  .navbar{
+    text-align: right;
+    span {
+      display: inline-block;
+      font-size: .3rem;
+      line-height: .50rem;
+      color: #222222;
+      margin:0 10px ;
+      cursor: pointer;
+    }
   }
+  
 }
 
 .logo1{
-  margin:10px 50px 10px;
+  float: left;
 }
 
 

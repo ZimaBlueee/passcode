@@ -4,7 +4,7 @@
       <el-header height="50px">
         <img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">
         <div class="navbar frame">
-          <button class="custom-btn btn-5" @click="toRouter('/home')"><span>主页</span></button>
+          <button class="custom-btn btn-6" @click="toRouter('/home')"><span>主页</span></button>
           <button class="custom-btn btn-12" @click="toRouter('/movie')"><span>你想要的这里都有</span><span>影视搜索</span></button>
           <button class="custom-btn btn-8" @click="toRouter('/calculator')"><span>身高计算器</span></button>
           <button class="custom-btn btn-14" @click="notify">文档阅读</button>

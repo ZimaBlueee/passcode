@@ -3,7 +3,7 @@
         <img src="../../static/img/hashiqi.gif" alt="" width="20%" style="min-width:200px" >
         <div>
           输入你的身高：
-          <el-input style="width: 1rem;" placeholder="请输入" v-model="input" maxlength="3" show-word-limit></el-input>
+          <el-input style="width: 1.8rem;" placeholder="请输入" v-model="input" maxlength="3"></el-input>
           CM
         </div>
 
@@ -41,7 +41,7 @@ export default {
 
 .calculator {
   font-size: .3rem;
-  
+
   //margin: 100px 0px 400px;
 }
 

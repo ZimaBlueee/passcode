@@ -4,11 +4,11 @@
       <el-header height="50px">
         <img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">
         <div class="navbar">
-          <span @click="notify">程序员类视频观看</span>
-          <span @click="notify">程序员类文档阅读</span>
-          <span @click="toRouter('/calculator')">身高计算器</span>
-          <span @click="toRouter('/movie')">影视搜索</span>
           <span @click="toRouter('/home')">主页</span>
+          <span @click="toRouter('/movie')">影视搜索</span>
+          <span @click="toRouter('/calculator')">身高计算器</span>
+          <span @click="notify">程序员类文档阅读</span>
+          <span @click="notify">程序员类视频观看</span>
         </div>
         <div class="clean"></div>
       </el-header>
@@ -56,7 +56,7 @@ export default {
       cursor: pointer;
     }
   }
-  
+
 }
 
 .logo1{

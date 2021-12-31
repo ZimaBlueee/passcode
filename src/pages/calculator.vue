@@ -9,7 +9,7 @@
 
         <el-button type="success" plain @click="result">开始计算</el-button>
 
-    <div class="frame">
+    <div>
       <button class="custom-btn btn-1">Read More</button>
       <button class="custom-btn btn-2">Read More</button>
       <button class="custom-btn btn-3"><span>Read More</span></button>

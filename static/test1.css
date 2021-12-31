@@ -16,11 +16,6 @@
 /*  font-size: 18px;*/
 /*  color: #676767;*/
 /*}*/
-.frame {
-  width: 90%;
-  margin: 40px auto;
-  text-align: center;
-}
 button {
   margin: 20px;
 }
@@ -602,7 +597,7 @@ background: linear-gradient(0deg, rgba(2,126,251,1) 0%,  rgba(0,3,255,1)100%);
 .btn-12{
   position: relative;
   right: 20px;
-  bottom: 20px;
+  bottom: 25px;
   border:none;
   box-shadow: none;
   width: 130px;

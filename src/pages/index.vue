@@ -17,8 +17,8 @@
             <span1 @click="toRouter('/home')">主页</span1>
             <span1 @click="toRouter('/movie')">影视搜索</span1>
             <span1 @click="toRouter('/calculator')">身高计算器</span1>
-            <span1 @click="notify">程序员类文档阅读</span1>
-            <span1 @click="notify">程序员类视频观看</span1>
+            <span1 @click="notify">文档阅读</span1>
+            <span1 @click="notify">视频观看</span1>
           </div>
         </div>
         <div class="clean"></div>
@@ -58,7 +58,8 @@ export default {
       this.flag = false;
     } else {
       /*window.location.href="你的电脑版地址";    */
-      this.flag = true;
+      // this.flag = true;
+      this.flag = false;
     }
   }
 
@@ -72,7 +73,7 @@ export default {
 
     span1 {
       display: inline-block;
-      font-size: .3rem;
+      font-size: .2rem;
       line-height: .50rem;
       color: #222222;
       margin: 0 10px;

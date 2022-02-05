@@ -4,20 +4,20 @@
       <el-header height="50px">
         <img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">
         <div class="navbar">
-          <div v-if=flag>
-            <button class="custom-btn btn-6" @click="toRouter('/home')"><span>主页</span></button>
-            <button class="custom-btn btn-12" @click="toRouter('/movie')"><span>你想要的这里都有</span><span>影视搜索</span>
-            </button>
-            <button class="custom-btn btn-8" @click="toRouter('/calculator')"><span>身高计算器</span></button>
-            <button class="custom-btn btn-14" @click="notify">文档阅读</button>
-            <button class="custom-btn btn-13" @click="notify">视频观看</button>
-          </div>
+          <!--<div v-if=flag>-->
+          <!--  <button class="custom-btn btn-6" @click="toRouter('/home')"><span>主页</span></button>-->
+          <!--  <button class="custom-btn btn-12" @click="toRouter('/movie')"><span>你想要的这里都有</span><span>影视搜索</span>-->
+          <!--  </button>-->
+          <!--  <button class="custom-btn btn-8" @click="toRouter('/calculator')"><span>身高计算器</span></button>-->
+          <!--  <button class="custom-btn btn-14" @click="notify">文档阅读</button>-->
+          <!--  <button class="custom-btn btn-13" @click="notify">视频观看</button>-->
+          <!--</div>-->
 
-          <div v-if=!flag>
+          <div v-if=flag>
             <span1 @click="toRouter('/home')">主页</span1>
             <span1 @click="toRouter('/movie')">影视搜索</span1>
             <span1 @click="toRouter('/calculator')">身高计算器</span1>
-            <span1 @click="notify">文档阅读</span1>
+            <span1 @click="toRouter('/read')">文档阅读</span1>
             <span1 @click="notify">视频观看</span1>
           </div>
         </div>
@@ -53,14 +53,14 @@ export default {
   mounted() {
   },
   created() {
-    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-      /*window.location.href="你的手机版地址";*/
-      this.flag = false;
-    } else {
-      /*window.location.href="你的电脑版地址";    */
-      // this.flag = true;
-      this.flag = false;
-    }
+    // if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+    //   /*window.location.href="你的手机版地址";*/
+    //   this.flag = false;
+    // } else {
+    //   /*window.location.href="你的电脑版地址";    */
+    //   // this.flag = true;
+    //   this.flag = false;
+    // }
   }
 
 }

@@ -7,6 +7,7 @@ const index = r => require.ensure([], () => r(require('@/pages/index')), 'index'
 const home = r => require.ensure([], () => r(require('@/pages/home')), 'home');
 const movie = r => require.ensure([], () => r(require('@/pages/movie')), 'movie');
 const calculator = r => require.ensure([], () => r(require('@/pages/calculator')), 'calculator');
+const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
@@ -38,6 +39,12 @@ export default new Router({
           path: '/calculator',
           component: calculator,
           name: '身高计算器',
+          hidden: true
+        },
+        {
+          path: '/read',
+          component: read,
+          name: '文档阅读',
           hidden: true
         },
         {

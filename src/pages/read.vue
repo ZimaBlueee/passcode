@@ -3,12 +3,16 @@
     <!--<el-button @click="addMenu" size="mini" type="primary" icon="el-icon-plus">新增</el-button>-->
     <el-input
       size="small"
-      placeholder="输入关键字进行过滤"
+      placeholder="输入关键字进行过滤(区分大小写)"
       v-model="filterText">
     </el-input>
     <el-tree
       :data="tableData"
       node-key="id"
+      v-loading="loading"
+      element-loading-text="下载pdf中，服务器比较便宜，下载速度最高640KB/S哦 : )"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(0, 0, 0, 0.8)"
       :expand-on-click-node="false"
       :default-expanded-keys="[0]"
       :filter-node-method="filterNode"
@@ -98,6 +102,7 @@
 export default {
   data() {
     return {
+      loading: false,
       tableData: [],
       dialogTitle: "",
       dialogVisible: false, // 控制新增弹框显示和隐藏
@@ -220,7 +225,7 @@ export default {
       this.$message.error(JSON.parse(err.message));
     },
     // 预览pdf
-    preview(val) {
+    async preview(val) {
       let fileId = val.fileId;
       if (fileId == null) {
         const h = this.$createElement;
@@ -229,12 +234,14 @@ export default {
           message: h('i', {style: 'color: #ef475d'}, '未上传PDF')
         });
       } else {
-        this.axios
+        this.loading = true;
+        await this.axios
           .get("/readPdf/readPdfById/" + fileId, {responseType: "blob"})
           .then(res => {
             let blob = new Blob([res.data], {type: "application/octet-stream"});
             let url = window.URL.createObjectURL(blob);
             window.open('static/pdfjs-2.6.347/web/viewer.html?file=' + encodeURIComponent(url))
+            this.loading = false;
           })
           .catch(err => {
             const h = this.$createElement;
@@ -242,6 +249,7 @@ export default {
               title: '错误',
               message: h('i', {style: 'color: #ef475d'}, '预览失败，请联系管理员')
             });
+            this.loading = false;
           });
       }
     },

@@ -13,12 +13,12 @@
           <!--  <button class="custom-btn btn-13" @click="notify">视频观看</button>-->
           <!--</div>-->
 
-          <div v-if=flag>
-            <span1 @click="toRouter('/home')">主页</span1>
-            <span1 @click="toRouter('/movie')">影视搜索</span1>
-            <span1 @click="toRouter('/calculator')">身高计算器</span1>
-            <span1 @click="toRouter('/read')">文档阅读</span1>
-            <span1 @click="notify">视频观看</span1>
+          <div v-if=flag class="title">
+            <span @click="toRouter('/home')">主页</span>
+            <span @click="toRouter('/movie')">影视搜索</span>
+            <span @click="toRouter('/calculator')">身高计算器</span>
+            <span @click="toRouter('/read')">文档阅读</span>
+            <span @click="notify">视频观看</span>
           </div>
         </div>
         <div class="clean"></div>
@@ -71,13 +71,15 @@ export default {
   .navbar {
     text-align: right;
 
-    span1 {
-      display: inline-block;
-      font-size: .2rem;
-      line-height: .50rem;
-      color: #222222;
-      margin: 0 10px;
-      cursor: pointer;
+    .title {
+      span {
+        display: inline-block;
+        font-size: .2rem;
+        line-height: .50rem;
+        color: #222222;
+        margin: 0 10px;
+        cursor: pointer;
+      }
     }
   }
 

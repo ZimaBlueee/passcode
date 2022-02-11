@@ -41,3 +41,6 @@ html, body, #app {
 .el-loading-spinner .el-loading-text {
   font-size: .16rem !important;
 }
+.el-message{
+  font-size: .16rem
+}

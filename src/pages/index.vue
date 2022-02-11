@@ -13,13 +13,35 @@
           <!--  <button class="custom-btn btn-13" @click="notify">视频观看</button>-->
           <!--</div>-->
 
-          <div v-if=flag class="title">
-            <span @click="toRouter('/home')">主页</span>
-            <span @click="toRouter('/movie')">影视搜索</span>
-            <span @click="toRouter('/calculator')">身高计算器</span>
-            <span @click="toRouter('/read')">文档阅读</span>
-            <span @click="notify">视频观看</span>
-          </div>
+          <!--          <div v-if=flag class="title">-->
+          <!--            <span @click="toRouter('/home')">主页</span>-->
+          <!--            <span @click="toRouter('/movie')">影视搜索</span>-->
+          <!--            <span @click="toRouter('/calculator')">身高计算器</span>-->
+          <!--            <span @click="toRouter('/read')">文档阅读</span>-->
+          <!--            <span @click="notify">视频观看</span>-->
+          <!--          </div>-->
+
+          <el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"
+                   active-text-color="#c04851">
+            <el-menu-item index="1" @click="toRouter('/home')">主页</el-menu-item>
+            <el-menu-item index="2" @click="toRouter('/movie')">影视搜索</el-menu-item>
+            <el-menu-item index="3" @click="toRouter('/calculator')">身高计算器</el-menu-item>
+            <el-menu-item index="4" @click="toRouter('/read')">文档阅读</el-menu-item>
+            <el-menu-item index="5" disabled>视频观看</el-menu-item>
+          </el-menu>
+
+          <el-menu v-else :default-active="activeIndex" class="el-menu" mode="vertical" active-text-color="#c04851">
+            <el-submenu index="1-1">
+              <template slot="title">
+                <i class="el-icon-s-unfold"></i>
+              </template>
+              <el-menu-item index="1-1-1" @click="toRouter('/home')">主页</el-menu-item>
+              <el-menu-item index="1-1-2" @click="toRouter('/movie')">影视搜索</el-menu-item>
+              <el-menu-item index="1-1-3" @click="toRouter('/calculator')">身高计算器</el-menu-item>
+              <el-menu-item index="1-1-4" @click="toRouter('/read')">文档阅读</el-menu-item>
+              <el-menu-item index="1-1-5" disabled>视频观看</el-menu-item>
+            </el-submenu>
+          </el-menu>
         </div>
         <div class="clean"></div>
       </el-header>
@@ -34,7 +56,8 @@
 export default {
   data() {
     return {
-      flag: true
+      flag: true,
+      activeIndex: '1',
     }
   },
   methods: {
@@ -53,14 +76,11 @@ export default {
   mounted() {
   },
   created() {
-    // if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-    //   /*window.location.href="你的手机版地址";*/
-    //   this.flag = false;
-    // } else {
-    //   /*window.location.href="你的电脑版地址";    */
-    //   // this.flag = true;
-    //   this.flag = false;
-    // }
+    if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+      this.flag = false;
+    } else {
+      this.flag = true;
+    }
   }
 
 }
@@ -68,8 +88,23 @@ export default {
 
 <style lang="scss">
 .el-header {
+  padding: 0;
+
   .navbar {
     text-align: right;
+
+    .el-menu {
+      float: right;
+      z-index: 9999;
+    }
+
+    .el-menu.el-menu--horizontal {
+      border-bottom: solid 1px rgba(0, 0, 0, 0);
+    }
+
+    .el-menu-item {
+      font-size: 0.2rem;
+    }
 
     .title {
       span {
@@ -83,6 +118,12 @@ export default {
     }
   }
 
+}
+
+.el-submenu__title {
+  .el-icon-arrow-down:before {
+    content: "";
+  }
 }
 
 .logo1 {

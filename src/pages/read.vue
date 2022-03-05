@@ -10,7 +10,7 @@
       :data="tableData"
       node-key="id"
       v-loading="loading"
-      element-loading-text="下载pdf中，服务器比较便宜，下载速度最高640KB/S哦 : )"
+      element-loading-text="加载pdf中，服务器比较便宜，带宽最高640kb/s哦 : )"
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :expand-on-click-node="false"

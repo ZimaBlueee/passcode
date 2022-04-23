@@ -1,13 +1,13 @@
 <template>
   <div class="calculator center">
-        <img src="../../static/img/hashiqi.gif" alt="" width="20%" style="min-width:200px" >
-        <div>
-          输入你的身高：
-          <el-input style="width: 1.8rem;" placeholder="请输入" v-model="input" maxlength="3"></el-input>
-          CM
-        </div>
+    <img src="../../static/img/hashiqi.gif" alt="" width="20%" style="min-width:200px">
+    <div>
+      输入你的身高：
+      <el-input style="width: 1.8rem;" placeholder="请输入" v-model="input" maxlength="3"></el-input>
+      CM
+    </div>
 
-        <el-button type="success" plain @click="result">开始计算</el-button>
+    <el-button type="success" plain @click="result">开始计算</el-button>
 
     <!--<div>-->
     <!--  <button class="custom-btn btn-1">Read More</button>-->

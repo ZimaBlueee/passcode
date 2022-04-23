@@ -23,22 +23,30 @@
 
           <el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"
                    active-text-color="#c04851">
-            <el-menu-item index="1" @click="toRouter('/home')">主页</el-menu-item>
-            <el-menu-item index="2" @click="toRouter('/movie')">影视搜索</el-menu-item>
-            <el-menu-item index="3" @click="toRouter('/calculator')">身高计算器</el-menu-item>
-            <el-menu-item index="4" @click="toRouter('/read')">文档阅读</el-menu-item>
+            <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
+            <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
+            <el-menu-item index="scanCodePage" @click="toRouter('/scanCodePage')">扫描二维码</el-menu-item>
+            <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫描组件</el-menu-item>
+            <el-menu-item index="scanQRCode" @click="toRouter('/scanQRCode')">扫一扫</el-menu-item>
+            <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
+            <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
+            <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
             <el-menu-item index="5" disabled>视频观看</el-menu-item>
           </el-menu>
 
-          <el-menu v-else :default-active="activeIndex" class="el-menu" mode="vertical" active-text-color="#c04851">
+          <el-menu v-else :default-active="activeIndex" class="el-menu" mode="vertical" :collapse="isCollapse"
+                   active-text-color="#c04851">
             <el-submenu index="1-1">
               <template slot="title">
                 <i class="el-icon-s-unfold"></i>
               </template>
-              <el-menu-item index="1-1-1" @click="toRouter('/home')">主页</el-menu-item>
-              <el-menu-item index="1-1-2" @click="toRouter('/movie')">影视搜索</el-menu-item>
-              <el-menu-item index="1-1-3" @click="toRouter('/calculator')">身高计算器</el-menu-item>
-              <el-menu-item index="1-1-4" @click="toRouter('/read')">文档阅读</el-menu-item>
+              <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
+              <el-menu-item index="scanCodePage" @click="toRouter('/scanCodePage')">扫描二维码</el-menu-item>
+              <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
+              <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫描组件</el-menu-item>
+              <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
+              <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
+              <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
               <el-menu-item index="1-1-5" disabled>视频观看</el-menu-item>
             </el-submenu>
           </el-menu>
@@ -57,12 +65,18 @@ export default {
   data() {
     return {
       flag: true,
-      activeIndex: '1',
+      activeIndex: 'home',
+      isCollapse: true
     }
   },
   methods: {
+    toggleCollapse() {
+      // this.$set(this.isCollapse, 0, true)
+      this.isCollapse = true;
+    },
     toRouter(val) {
       this.$router.push(val);
+      this.toggleCollapse();
     },
     notify() {
       const h = this.$createElement;
@@ -74,6 +88,8 @@ export default {
     },
   },
   mounted() {
+    let path = this.$route.path;
+    this.activeIndex = path.split("/")[1];
   },
   created() {
     if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {

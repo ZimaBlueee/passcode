@@ -1,23 +1,15 @@
 <template>
 
   <div>
-    <h1>测试</h1>
-    <!--<qrcode/>-->
-    <!--<qrcode></qrcode>-->
-    <HelloWorld/>
-    <HelloWorld></HelloWorld>
+    <QrcodeReader></QrcodeReader>
   </div>
 </template>
 
-
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
-// 注册
-components: {
-  HelloWorld
-}
+import QrcodeReader from "@/components/QrcodeReader";
 
 export default {
+  components: {QrcodeReader},
   data() {
     return {}
   },

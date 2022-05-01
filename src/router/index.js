@@ -8,8 +8,6 @@ const home = r => require.ensure([], () => r(require('@/pages/home')), 'home');
 const movie = r => require.ensure([], () => r(require('@/pages/movie')), 'movie');
 const calculator = r => require.ensure([], () => r(require('@/pages/calculator')), 'calculator');
 const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');
-const scanCodePage = r => require.ensure([], () => r(require('@/pages/scanCodePage')), 'scanCodePage');
-const scanQRCode = r => require.ensure([], () => r(require('@/pages/scanQRCode')), 'scanQRCode');
 const applyMealTicket = r => require.ensure([], () => r(require('@/pages/applyMealTicket')), 'applyMealTicket');
 const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMealTicket')), 'readMealTicket');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
@@ -52,18 +50,6 @@ export default new Router({
           hidden: true
         },
         {
-          path: '/scanCodePage',
-          name: '扫码页面',
-          component: scanCodePage,
-          hidden: true
-        },
-        {
-          path: '/scanQRCode',
-          name: '扫一扫',
-          component: scanQRCode,
-          hidden: true
-        },
-        {
           path: '/applyMealTicket',
           name: '申请饭票',
           component: applyMealTicket,
@@ -71,7 +57,7 @@ export default new Router({
         },
         {
           path: '/readMealTicket',
-          name: '扫描组件',
+          name: '扫一扫',
           component: readMealTicket,
           hidden: true
         },

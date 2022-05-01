@@ -238,7 +238,7 @@ export default {
         await this.axios
           .get("/readPdf/readPdfById/" + fileId, {responseType: "blob"})
           .then(res => {
-            let blob = new Blob([res.data], {type: "application/octet-stream"});
+            let blob = new Blob([res], {type: "application/octet-stream"});
             let url = window.URL.createObjectURL(blob);
             window.open('static/pdfjs-2.6.347/web/viewer.html?file=' + encodeURIComponent(url))
             this.loading = false;

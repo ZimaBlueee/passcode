@@ -1,9 +1,6 @@
 <template>
   <div>
     <div class="center">
-
-
-
       <section class="icon-list">
         <!--<i class="nes-icon is-large heart"></i>-->
         <!--<i class="nes-icon is-large heart"></i>-->
@@ -22,7 +19,7 @@
 
       <div class="search">
         <div class="nes-field is-inline">
-          <input type="text" class="nes-input is-success" placeholder="请输入关键字搜索" v-model="keyWord"></input>
+          <input type="text" class="nes-input is-success" placeholder="请输入关键字搜索" v-model="keyWord" v-on:keyup.enter="onSearch"></input>
           <button type="button" class="nes-btn is-primary" @click="onSearch">搜 索</button>
         </div>
       </div>
@@ -80,7 +77,7 @@ export default {
     },
 
     processMove() {
-      if (this.processVal < 99) {
+      if (this.processVal <= 80) {
         this.processVal = this.processVal + 20;
         console.log(this.processVal)
       }

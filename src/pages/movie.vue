@@ -77,7 +77,7 @@ export default {
     },
 
     processMove() {
-      if (this.processVal <= 80) {
+      if (this.processVal < 80) {
         this.processVal = this.processVal + 20;
         console.log(this.processVal)
       }

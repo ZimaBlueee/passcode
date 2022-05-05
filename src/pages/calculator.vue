@@ -51,9 +51,4 @@ export default {
   //margin: 100px 0px 400px;
 }
 
-.nes-text {
-  font-family: 'pix font';
-}
-
-
 </style>

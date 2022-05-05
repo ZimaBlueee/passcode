@@ -35,6 +35,7 @@ import {QrcodeStream} from 'vue-qrcode-reader'
 
 export default {
   components: {QrcodeStream},
+  props: ['pack'],
 
   data() {
     return {
@@ -115,8 +116,14 @@ export default {
 
     // 进行消费记录
     pay(result) {
+      console.log("pack=" + this.pack)
       return this.axios
-        .get('/meal/pay?userId=' + result)
+        .get('/meal/pay', {
+          params: {
+            uniCode: result,
+            pack: this.pack
+          }
+        })
         .then(res => {
           return res.data
         })

@@ -2,7 +2,7 @@
   <div>
     <el-container>
       <el-header height="50px">
-        <img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">
+        <!--<img src="../../static/img/naleme.png" alt="" class="logo1" @click="toRouter('/home')">-->
         <div class="navbar">
           <!--<div v-if=flag>-->
           <!--  <button class="custom-btn btn-6" @click="toRouter('/home')"><span>主页</span></button>-->
@@ -26,6 +26,7 @@
             <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
             <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
             <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
+            <el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>
             <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
             <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
             <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
@@ -41,6 +42,7 @@
               <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
               <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
               <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
+              <el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>
               <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
               <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
               <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
@@ -108,7 +110,7 @@ export default {
 
     .el-menu {
       float: right;
-      z-index: 9999;
+      //z-index: 9999;
     }
 
     .el-menu.el-menu--horizontal {

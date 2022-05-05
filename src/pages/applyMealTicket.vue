@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="form" :model="form" class="center">
+    <el-form ref="form" :label-position="labelPosition" :model="form" class="center">
       <el-form-item label="员工">
         <el-autocomplete
           clearable
@@ -32,7 +32,8 @@ export default {
         user: '',
         userId: '',
       },
-      verifycode: ''
+      verifycode: '',
+      labelPosition: 'right'
     }
   },
   methods: {
@@ -77,5 +78,12 @@ export default {
 .el-autocomplete {
   width: 8rem;
 }
+
+//label{
+//  display:inline-block;
+//  width:2rem;
+//
+//  text-align:right;
+//}
 
 </style>

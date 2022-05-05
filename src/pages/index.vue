@@ -24,9 +24,9 @@
           <el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"
                    active-text-color="#c04851">
             <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
-            <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
-            <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
-            <el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>
+            <!--<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>-->
+            <!--<el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>-->
+            <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
             <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
             <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
             <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
@@ -40,9 +40,9 @@
                 <i class="el-icon-s-unfold"></i>
               </template>
               <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
-              <el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>
+              <!--<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>-->
               <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
-              <el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>
+              <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
               <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
               <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
               <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>

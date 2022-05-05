@@ -8,13 +8,6 @@
     </div>
 
     <el-button type="success" plain @click="result">开始计算</el-button>
-
-    <div class="main">
-      <div class="nes-container with-title">
-        <span class="title">DEMO</span>
-        <span class="nes-text">Good morning. Thou hast had a good night's sleep, I hope.我</span>
-      </div>
-    </div>
   </div>
 </template>
 

@@ -1,10 +1,12 @@
 @font-face {
   font-family: 'pix font';
-  src: url("DottedSongtiSquareRegular.otf");
-  font-weight: normal;
-  font-style: normal;
+  /*src: url("DottedSongtiSquareRegular.otf");*/
+  src: url("Zpix-beta-v3.0.2-beta.0.ttf");
 }
 
-*{
+* {
   font-family: "pix font";
+  /*font-size: 0.15rem;*/
+  /*font-weight: bold;*/
+  /*text-shadow: 2px 2px 1px gray;*/
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form ref="form" :label-position="labelPosition" :model="form" class="center">
+    <el-form ref="form" :label-position="labelPosition" inline :model="form" class="center">
       <el-form-item label="员工">
         <el-autocomplete
           clearable

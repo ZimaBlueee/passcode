@@ -5,6 +5,10 @@ import App from './App'
 import router from './router'
 import {MessageBox, Message} from 'element-ui'
 
+import '../node_modules/nes.css/css/nes.min.css'
+import "../static/font/zpix.css";
+
+
 // 引入vant
 import {NavBar, Icon} from 'vant'
 

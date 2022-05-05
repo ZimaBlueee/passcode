@@ -9,25 +9,12 @@
 
     <el-button type="success" plain @click="result">开始计算</el-button>
 
-    <!--<div>-->
-    <!--  <button class="custom-btn btn-1">Read More</button>-->
-    <!--  <button class="custom-btn btn-2">Read More</button>-->
-    <!--  <button class="custom-btn btn-3"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-4"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-5"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-6"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-7"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-8"><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-9">Read More</button>-->
-    <!--  <button class="custom-btn btn-10">Read More</button>-->
-    <!--  <button class="custom-btn btn-11">Read More<div class="dot"></div></button>-->
-    <!--  <button class="custom-btn btn-12"><span>Click!</span><span>Read More</span></button>-->
-    <!--  <button class="custom-btn btn-13">Read More</button>-->
-    <!--  <button class="custom-btn btn-14">Read More</button>-->
-    <!--  <button class="custom-btn btn-15">Read More</button>-->
-    <!--  <button class="custom-btn btn-16">Read More</button>-->
-    <!--</div>-->
-
+    <div class="main">
+      <div class="nes-container with-title">
+        <span class="title">DEMO</span>
+        <span class="nes-text">Good morning. Thou hast had a good night's sleep, I hope.我</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,6 +49,10 @@ export default {
   font-size: .3rem;
 
   //margin: 100px 0px 400px;
+}
+
+.nes-text {
+  font-family: 'pix font';
 }
 
 

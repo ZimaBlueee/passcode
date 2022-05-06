@@ -1,6 +1,6 @@
 # node镜像
 #FROM node:latest as build-stage
-FROM node:12.22.12-buster-slim as build-stage
+FROM node:10.24.1-alpine3.11 as build-stage
 # 维护者信息
 MAINTAINER zima "1216912253@qq.com"
 

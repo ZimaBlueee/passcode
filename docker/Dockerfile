@@ -10,20 +10,19 @@ WORKDIR /app
 # 拷贝前端项目 当前目录下的所有文件到app目录下(./指当前所有的代码路径 .指上一步cd到app的路径)
 COPY ./ .
 
-## 设置淘宝npm镜像
-#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-## 安装依赖
-#RUN cnpm install
-#
-## 打包 - 目的：丢到nginx下跑
-#RUN cnpm run build
+# 设置淘宝npm镜像
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+# 安装依赖
+RUN cnpm install
+# 打包 - 目的：丢到nginx下跑
+RUN cnpm run build
 
-# 配置淘宝镜像
-RUN npm config set registry https://registry.npm.taobao.org
-RUN npm config set unsafe-perm true
-RUN SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
-RUN npm install
-RUN npm run build
+## 配置淘宝镜像
+#RUN npm config set registry https://registry.npm.taobao.org
+#RUN npm config set unsafe-perm true
+#RUN SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+#RUN npm install
+#RUN npm run build
 
 RUN echo "-------------------- npm打包成功 --------------------"
 

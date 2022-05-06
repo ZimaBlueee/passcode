@@ -3,20 +3,29 @@ FROM node:latest as build-stage
 # 维护者信息
 MAINTAINER zima "1216912253@qq.com"
 
-RUN echo "-------------------- web environment configuration --------------------"
+RUN echo "-------------------- 开始配置npm --------------------"
 
 # 指定接下来的工作路径为/app  - 类似于cd命令
 WORKDIR /app
 # 拷贝前端项目 当前目录下的所有文件到app目录下(./指当前所有的代码路径 .指上一步cd到app的路径)
 COPY ./ .
 
-# 设置淘宝npm镜像
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-# 安装依赖
-RUN cnpm install
+## 设置淘宝npm镜像
+#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+## 安装依赖
+#RUN cnpm install
+#
+## 打包 - 目的：丢到nginx下跑
+#RUN cnpm run build
 
-# 打包 - 目的：丢到nginx下跑
-RUN cnpm run build
+# 配置淘宝镜像
+RUN npm config set registry https://registry.npm.taobao.org
+RUN npm config set unsafe-perm true
+RUN SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install node-sass
+RUN npm install
+RUN npm run build
+
+RUN echo "-------------------- npm打包成功 --------------------"
 
 # 前端项目运行命令
 #CMD ["npm","run","start"]
@@ -27,6 +36,8 @@ RUN cnpm run build
 FROM nginx:1.15.3-alpine as production-stage
 # 维护者信息
 MAINTAINER zima "1216912253@qq.com"
+
+RUN echo "-------------------- 开始配置nginx --------------------"
 
 # 移除nginx容器的default.conf文件、nginx配置文件
 RUN rm /etc/nginx/conf.d/default.conf
@@ -45,3 +56,4 @@ EXPOSE 80 443
 # 使用daemon off的方式将nginx运行在前台保证镜像不至于退出
 CMD ["nginx", "-g", "daemon off;"]
 
+RUN echo "-------------------- nginx配置成功 --------------------"

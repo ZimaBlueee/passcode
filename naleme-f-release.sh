@@ -7,7 +7,7 @@ cd /home/naleme/film-search || exit 1
 #git checkout master
 #git checkout .
 echo '==============开始拉取最新代码==========='
-git pull --rebase
+git pull --rebase || exit 1
 echo '==============拉取最新代码成功=========='
 
 sleep 1

@@ -1,0 +1,23 @@
+version: '3'
+services:
+  naleme-f: # 前端node容器(运行nginx中的Vue项目)
+    image: naleme-fronted_image
+    container_name: naleme-fronted-container
+    restart: always                     # 重启策略: 容器退出时总是重启容器
+    build:
+      context: ./                       # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+      dockerfile: docker/Dockerfile
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "80:80"                      # 映射端口
+      - "443:443"                      # 映射端口
+    volumes:
+      - /data/nginx/cert:/etc/nginx/cert     # 证书映射
+#      - /etc/localtime:/etc/localtime:ro     # 主机本机时间文件映射 与本机时间同步
+    networks:
+      - naleme-fronted-network          # 设置网卡
+
+networks:
+  naleme-fronted-network:
+    driver: bridge

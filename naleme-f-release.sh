@@ -6,7 +6,7 @@ cd /home/naleme/film-search || exit 1
 
 #git checkout master
 #git checkout .
-git pull
+git pull --rebase
 echo '==============git pull success=========='
 
 sleep 1

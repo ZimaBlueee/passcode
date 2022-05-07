@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import {MessageBox, Message} from 'element-ui'
 
-import '../static/nes.css'
+// import '../static/nes.css'
 import "../static/font/zpix.css";
 
 

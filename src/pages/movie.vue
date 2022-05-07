@@ -45,7 +45,7 @@
           <tr v-for="(link, index) in tableData">
             <td><span class="nes-text is-warning">{{ link.question }}</span></td>
             <td>
-              <p v-html='link.answer'></p>
+              <span v-html='link.answer'></span>
             </td>
           </tr>
           </tbody>

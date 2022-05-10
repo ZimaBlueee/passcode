@@ -4,7 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 const index = r => require.ensure([], () => r(require('@/pages/index')), 'index');
-const home = r => require.ensure([], () => r(require('@/pages/home')), 'home');
+const home = r => require.ensure([], () => r(require('@/pages/home2')), 'home');
 const movie = r => require.ensure([], () => r(require('@/pages/movie')), 'movie');
 const calculator = r => require.ensure([], () => r(require('@/pages/calculator')), 'calculator');
 const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');

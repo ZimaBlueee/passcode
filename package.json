@@ -13,7 +13,9 @@
     "@zxing/library": "^0.19.1",
     "axios": "^0.24.0",
     "element-ui": "^2.15.6",
+    "three": "^0.121.0",
     "vant": "^2.12.47",
+    "vanta": "^0.5.22",
     "vue": "^2.5.2",
     "vue-qrcode-reader": "^3.1.0",
     "vue-router": "^3.0.1"

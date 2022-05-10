@@ -9,7 +9,7 @@
     </div>
 
     <div class="welcome-title">
-      <h2>Born to Love</h2>
+      <h2>Welcome To The Next Level</h2>
     </div>
 
     <el-row>

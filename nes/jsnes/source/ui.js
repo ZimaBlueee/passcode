@@ -49,7 +49,7 @@ if (typeof jQuery !== 'undefined') {
                 self.buttons = {
                     pause: $('<input type="button" value="暂停" class="nes-pause" disabled="disabled">').appendTo(self.controls),
                     restart: $('<input type="button" value="重启" class="nes-restart" disabled="disabled">').appendTo(self.controls),
-                    sound: $('<input type="button" value="开启声音" class="nes-enablesound">').appendTo(self.controls),
+                    sound: $('<input style="color:#FF0000" type="button" value="开启声音" class="nes-enablesound">').appendTo(self.controls),
                     zoom: $('<input type="button" value="放大" class="nes-zoom">').appendTo(self.controls)
                 };
                 self.root.appendTo(parent);

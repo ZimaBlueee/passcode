@@ -28,7 +28,7 @@
             <!--<el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>-->
             <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
             <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
-            <el-menu-item index="game"><a href="http://fc.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
+            <el-menu-item index="game"><a href="https://fc.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
             <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
             <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
             <el-menu-item index="5" disabled>视频观看</el-menu-item>
@@ -45,7 +45,7 @@
               <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
               <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
               <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
-              <el-menu-item index="game"><a href="http://fc.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
+              <el-menu-item index="game"><a href="https://fc.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
               <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
               <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
               <el-menu-item index="1-1-5" disabled>视频观看</el-menu-item>

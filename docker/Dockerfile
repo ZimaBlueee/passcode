@@ -47,7 +47,7 @@ COPY ./docker/nginx.conf /etc/nginx/
 # 拷贝前端vue项目打包后生成的文件到nginx下运行
 COPY --from=build-stage /app/dist /usr/share/nginx/html/naleme
 # 拷贝fc游戏项目
-COPY ../fc  /usr/share/nginx/html/
+COPY ../nes  /usr/share/nginx/html/
 
 # 暴露端口
 EXPOSE 80 443

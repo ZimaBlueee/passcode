@@ -5,6 +5,7 @@ import HelloWorld from '@/components/HelloWorld'
 Vue.use(Router)
 const index = r => require.ensure([], () => r(require('@/pages/index')), 'index');
 const home = r => require.ensure([], () => r(require('@/pages/home2')), 'home');
+const applyCanteenVisitor = r => require.ensure([], () => r(require('@/pages/applyCanteenVisitor')), 'applyCanteenVisitor');
 const movie = r => require.ensure([], () => r(require('@/pages/movie')), 'movie');
 const calculator = r => require.ensure([], () => r(require('@/pages/calculator')), 'calculator');
 const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');
@@ -32,6 +33,12 @@ export default new Router({
         name: '首页',
         hidden: true
       },
+        {
+          path: '/applyCanteenVisitor',
+          component: applyCanteenVisitor,
+          name: '申请食堂通行证',
+          hidden: true
+        },
         {
           path: '/movie',
           component: movie,

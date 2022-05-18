@@ -67,7 +67,7 @@ export default {
               let jsonData = JSON.parse(this.result);
               if (jsonData.code) {
                 flag1 = false
-                console.log(flag1)
+                console.log('///////flag1 = false')
                 // 报错
                 that.$message({
                   showClose: true,
@@ -78,26 +78,25 @@ export default {
             } catch (err) {
               // 解析成对象失败，说明是正常的文件流
               that.verifycode = window.URL.createObjectURL(data)
+              checkCount()
             }
           };
           fileReader.readAsText(data);
-
-          console.log(flag1)
-          if (flag1) {
-            // 检查次数
-            this.axios
-              .get('/meal/checkCount?phone=' + this.form.phone)
-              .then(res => {
-                console.log(res)
-
-                this.$alert(res.data, '员工须知', {
-                  dangerouslyUseHTMLString: true
-                });
-              });
-          }
+          console.log('///////flag1 = true')
         }
       )
 
+    },
+    checkCount() {
+      this.axios
+        .get('/meal/checkCount?phone=' + this.form.phone)
+        .then(res => {
+          console.log(res)
+
+          this.$alert(res.data, '员工须知', {
+            dangerouslyUseHTMLString: true
+          });
+        });
     },
 
     querySearch(queryString, cb) {

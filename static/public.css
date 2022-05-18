@@ -45,3 +45,7 @@ html, body, #app {
 .el-message {
   font-size: .16rem
 }
+
+.el-message-box {
+  width: initial !important;
+}

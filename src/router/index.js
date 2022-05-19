@@ -18,19 +18,19 @@ const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/HelloWorld',
+    //   name: 'HelloWorld',
+    //   component: HelloWorld
+    // },
     {
-      path: '/HelloWorld',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/login',
+      path: '/',
       component: login,
       name: '登录',
       hidden: true
     },
     {
-      path: '/',
+      path: '/index',
       component: index, //通过component来展示所要展示的组件
       name: "index",
       hidden: true,

@@ -52,6 +52,10 @@ export default {
     };
   },
   created() {
+    if(!!sessionStorage.getItem("token")){
+      //已登录
+      this.$router.push("applyCanteenVisitor");
+    }
   },
   methods: {
 

@@ -15,7 +15,7 @@
 
           <div class="title">
             <span @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</span>
-            <span @click="toRouter('/readVisitorQRCode')" v-if=this.isVolunteer>扫一扫</span>
+            <span @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer=='true'">扫一扫</span>
             <span @click="toRouter('/login')">登录</span>
             <span @click="logout">退出</span>
           </div>

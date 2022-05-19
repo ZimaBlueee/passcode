@@ -4,14 +4,16 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 const index = r => require.ensure([], () => r(require('@/pages/index')), 'index');
-const home = r => require.ensure([], () => r(require('@/pages/home2')), 'home');
-const applyCanteenVisitor = r => require.ensure([], () => r(require('@/pages/applyCanteenVisitor')), 'applyCanteenVisitor');
+const home = r => require.ensure([], () => r(require('@/pages/home')), 'home');
+const applyCanteenVisitor = r => require.ensure([], () => r(require('@/pages/applyCanteenVisitor2')), 'applyCanteenVisitor');
+const readVisitorQRCode = r => require.ensure([], () => r(require('@/pages/readVisitorQRCode')), 'readVisitorQRCode');
 const movie = r => require.ensure([], () => r(require('@/pages/movie')), 'movie');
 const calculator = r => require.ensure([], () => r(require('@/pages/calculator')), 'calculator');
 const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');
 const applyMealTicket = r => require.ensure([], () => r(require('@/pages/applyMealTicket')), 'applyMealTicket');
 const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMealTicket')), 'readMealTicket');
 const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')), 'mealReport');
+const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
@@ -22,21 +24,34 @@ export default new Router({
       component: HelloWorld
     },
     {
+      path: '/login',
+      component: login,
+      name: '登录',
+      hidden: true
+    },
+    {
       path: '/',
       component: index, //通过component来展示所要展示的组件
       name: "index",
       hidden: true,
       redirect: '/home',
-      children: [{
-        path: '/home',
-        component: home,
-        name: '首页',
-        hidden: true
-      },
+      children: [
+        {
+          path: '/home',
+          component: home,
+          name: '首页',
+          hidden: true
+        },
         {
           path: '/applyCanteenVisitor',
           component: applyCanteenVisitor,
           name: '申请食堂通行证',
+          hidden: true
+        },
+        {
+          path: '/readVisitorQRCode',
+          component: readVisitorQRCode,
+          name: '扫描食堂通行证',
           hidden: true
         },
         {

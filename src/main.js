@@ -6,8 +6,7 @@ import router from './router'
 import {MessageBox, Message} from 'element-ui'
 
 // import '../static/nes.css'
-import "../static/font/zpix.css";
-
+// import "../static/font/zpix.css";
 
 // 引入vant
 import {NavBar, Icon} from 'vant'
@@ -30,6 +29,52 @@ let baseURL = process.env.API_ROOT
 axios.defaults.baseURL = baseURL
 
 
+function reFresh() {
+  let parm = {
+    "token": sessionStorage.getItem("token")
+  }
+  return axios.post("/sys/refreshToken", parm).then(res => res.data);
+}
+
+// axios拦截器，发送请求之前操作
+let isRefresh = false;
+axios.interceptors.request.use(config => {
+  if (config.url.indexOf("/api/user/login") !== -1) {
+    // 以multipart/form-data形式提交
+    config.headers['Content-Type'] = 'multipart/form-data'
+  } else {
+    // 以json形式提交
+    config.headers['Content-Type'] = 'application/json'
+    let current = new Date().getTime(); //当前时间
+    let expireTime = sessionStorage.getItem("expireTime");//token到期时间
+    let exPMin = (expireTime - current) / 1000 / 60;
+    console.log(exPMin)
+    // 离token到期10分钟刷新token
+    if (exPMin < 10) {
+      if (!isRefresh) {
+        isRefresh = true;
+        return reFresh().then(res => {
+          if (res) {
+            sessionStorage.setItem("token", res.token);
+            sessionStorage.setItem("expireTime", res.expireTime);
+            config.headers.token = sessionStorage.getItem('token')
+          }
+          return config;
+        }).catch(res => {
+          console.log(res)
+        }).finally(() => {
+          isRefresh = false;
+        })
+      }
+    }
+  }
+
+  // 为请求头添加token字段
+  config.headers.token = sessionStorage.getItem('token')
+  return config;
+})
+
+
 // response interceptor
 axios.interceptors.response.use(
   /**
@@ -43,25 +88,16 @@ axios.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    // console.log(response)
+    console.log(response)
     const res = response.data
-    // console.log(res.code);
+    console.log(res.code);
 
     if (res.code && res.code !== '200') {
-      if (res.code === '1007') {
-        // MessageBox.confirm('超时，可以取消继续留在该页面，或者重新登录', '确定登出', {
-        //   confirmButtonText: '重新登录',
-        //   cancelButtonText: '取消',
-        //   type: 'warning'
-        // }).then(() => {
-        //   removeToken()
-        //   resetRouter()
-        //   location.reload() // 为了重新实例化vue-router对象 避免bug
-        // })
-      } else if (res.code === '1004') {
-        // logout().then(() => {
-        //   location.reload() // 为了重新实例化vue-router对象 避免bug
-        // })
+      if (res.code === '600') {
+        sessionStorage.clear();
+        console.log(11111)
+        window.location.href = '/login'
+        return res;
       } else {
         Message({
           message: res.msg || 'Error',
@@ -85,6 +121,43 @@ axios.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+
+// //进入路由之前执行
+// router.beforeEach((to, from, next) => {
+//   //to   将要进入的路由
+//   //from  将要离开的路由
+//   //next   让路由继续执行
+//
+//   //获取当前打开的选项卡
+//   store.commit('getTabs');
+//   //设置当前激活的选项卡
+//   store.commit('setActiveTabs', to.name);
+//
+//   let token = sessionStorage.getItem('token');
+//   if (to.path === '/login') {
+//     if (token) {
+//       next({path: '/home'})
+//     } else {
+//       next();
+//     }
+//   } else {
+//     if (!token && to.name !== 'login') {
+//       next({path: '/login'})
+//     } else {
+//       if (store.state.MenuStore.menu_data.length == 0) {
+//         store.commit('getMenuList', router);
+//         if (to.path == "/") {
+//           next({path: '/home'})
+//         } else {
+//           next({path: to.path});
+//         }
+//       } else {
+//         next();
+//       }
+//     }
+//   }
+// })
 
 
 /* eslint-disable no-new */

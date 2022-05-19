@@ -1,26 +1,8 @@
 <template>
   <div>
-    <el-form ref="form" :label-position="labelPosition" inline :model="form" class="center">
-      <el-form-item label="手机号">
-        <!--<el-autocomplete-->
-        <!--  clearable-->
-        <!--  class="inline-input"-->
-        <!--  v-model="form.phone"-->
-        <!--  placeholder="请输入您的手机号"-->
-        <!--&gt;</el-autocomplete>-->
-
-        <el-input v-model="form.phone" placeholder="请输入您的手机号"></el-input>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即申请</el-button>
-      </el-form-item>
-    </el-form>
-
     <div class="center">
       <img :src="verifycode" alt class="QRcode"/>
     </div>
-
   </div>
 </template>
 
@@ -54,9 +36,10 @@ export default {
 
     onSubmit() {
       let that = this
+      let userId = sessionStorage.getItem("userId");
       this.axios({
         method: 'get',
-        url: '/meal/generateVisitorQRCode?phone=' + this.form.phone,
+        url: '/meal/generateVisitorQRCode?userId=' + userId,
         responseType: 'blob'
       }).then(res => {
           let data = res;
@@ -85,13 +68,9 @@ export default {
     },
 
     checkCount() {
-      this.axios
-        .get('/meal/checkCount?phone=' + this.form.phone)
-        .then(res => {
-          this.$alert(res.data, '员工须知', {
-            dangerouslyUseHTMLString: true
-          });
-        });
+      this.$alert('<span style="color: #346c9c">请提前截图保存至手机相册,进入食堂时向志愿者出示,</span><br/><br/><font color=red>请勿</font>将二维码泄露给他人,<br/><br/> 如果检测到共享通行码会被<font color=red>追究责任</font>', '员工须知', {
+        dangerouslyUseHTMLString: true
+      });
     },
 
     querySearch(queryString, cb) {
@@ -112,6 +91,9 @@ export default {
   },
 
   mounted() {
+  },
+  created() {
+    this.onSubmit()
   }
 
 }

@@ -13,46 +13,48 @@
           <!--  <button class="custom-btn btn-13" @click="notify">视频观看</button>-->
           <!--</div>-->
 
-          <!--          <div v-if=flag class="title">-->
-          <!--            <span @click="toRouter('/home')">主页</span>-->
-          <!--            <span @click="toRouter('/movie')">影视搜索</span>-->
-          <!--            <span @click="toRouter('/calculator')">身高计算器</span>-->
-          <!--            <span @click="toRouter('/read')">文档阅读</span>-->
-          <!--            <span @click="notify">视频观看</span>-->
-          <!--          </div>-->
+          <div class="title">
+            <span @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</span>
+            <span @click="toRouter('/readVisitorQRCode')" v-if=this.isVolunteer>扫一扫</span>
+            <span @click="toRouter('/login')">登录</span>
+            <span @click="logout">退出</span>
+          </div>
 
-          <el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"
-                   active-text-color="#c04851">
-            <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
-            <!--<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>-->
-            <!--<el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>-->
-            <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
-            <el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</el-menu-item>
-            <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
-            <el-menu-item index="game"><a href="https://nes.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
-            <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
-            <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
-            <el-menu-item index="5" disabled>视频观看</el-menu-item>
-          </el-menu>
+          <!--<el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"-->
+          <!--         active-text-color="#c04851">-->
+          <!--  <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>-->
+          <!--  &lt;!&ndash;<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>&ndash;&gt;-->
+          <!--  &lt;!&ndash;<el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>&ndash;&gt;-->
+          <!--  &lt;!&ndash;<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>&ndash;&gt;-->
+          <!--  <el-menu-item index="readVisitorQRCode" @click="toRouter('/readVisitorQRCode')">扫一扫</el-menu-item>-->
+          <!--  <el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</el-menu-item>-->
+          <!--  &lt;!&ndash;<el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>&ndash;&gt;-->
+          <!--  &lt;!&ndash;<el-menu-item index="game"><a href="https://nes.zima.link" target="_blank">任天堂游戏</a></el-menu-item>&ndash;&gt;-->
+          <!--  &lt;!&ndash;<el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>&ndash;&gt;-->
+          <!--  <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>-->
+          <!--  <el-menu-item index="5" disabled>视频观看</el-menu-item>-->
+          <!--</el-menu>-->
 
-          <el-menu v-else :default-active="activeIndex" class="el-menu" mode="vertical" :collapse="isCollapse"
-                   active-text-color="#c04851">
-            <el-submenu index="1-1">
-              <template slot="title">
-                <i class="el-icon-s-unfold"></i>
-              </template>
-              <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>
-              <!--<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>-->
-              <el-menu-item index="readMealTicket" @click="toRouter('/readMealTicket')">扫一扫</el-menu-item>
-              <!--<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>-->
-              <el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</el-menu-item>
-              <el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>
-              <el-menu-item index="game"><a href="https://nes.zima.link" target="_blank">任天堂游戏</a></el-menu-item>
-              <el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>
-              <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>
-              <el-menu-item index="1-1-5" disabled>视频观看</el-menu-item>
-            </el-submenu>
-          </el-menu>
+          <!--<el-menu v-else :default-active="activeIndex" class="el-menu" mode="vertical" :collapse="isCollapse"-->
+          <!--         active-text-color="#c04851">-->
+          <!--  <el-submenu index="1-1">-->
+          <!--    <template slot="title">-->
+          <!--      <i class="el-icon-s-unfold"></i>-->
+          <!--    </template>-->
+          <!--    <el-menu-item index="home" @click="toRouter('/home')">主页</el-menu-item>-->
+          <!--    &lt;!&ndash;<el-menu-item index="applyMealTicket" @click="toRouter('/applyMealTicket')">申请饭票</el-menu-item>&ndash;&gt;-->
+          <!--    <el-menu-item index="readVisitorQRCode" @click="toRouter('/readVisitorQRCode')" v-if=this.isVolunteer>-->
+          <!--      扫一扫-->
+          <!--    </el-menu-item>-->
+          <!--    &lt;!&ndash;<el-menu-item index="mealReport" @click="toRouter('/mealReport')">就餐报告</el-menu-item>&ndash;&gt;-->
+          <!--    &lt;!&ndash;<el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">申请食堂通行证</el-menu-item>&ndash;&gt;-->
+          <!--    &lt;!&ndash;<el-menu-item index="movie" @click="toRouter('/movie')">影视搜索</el-menu-item>&ndash;&gt;-->
+          <!--    &lt;!&ndash;<el-menu-item index="game"><a href="https://nes.zima.link" target="_blank">任天堂游戏</a></el-menu-item>&ndash;&gt;-->
+          <!--    &lt;!&ndash;<el-menu-item index="calculator" @click="toRouter('/calculator')">身高计算器</el-menu-item>&ndash;&gt;-->
+          <!--    <el-menu-item index="read" @click="toRouter('/read')">文档阅读</el-menu-item>-->
+          <!--    <el-menu-item index="1-1-5" disabled>视频观看</el-menu-item>-->
+          <!--  </el-submenu>-->
+          <!--</el-menu>-->
         </div>
         <div class="clean"></div>
       </el-header>
@@ -69,10 +71,20 @@ export default {
     return {
       flag: true,
       activeIndex: 'home',
-      isCollapse: true
+      isCollapse: true,
+      isVolunteer: false
     }
   },
   methods: {
+    async logout() {
+      let res = await this.axios.get("/api/user/loginOut");
+      console.log(res)
+      if (res.code === "200") {
+        sessionStorage.clear();
+        window.location.href = "/login";
+      }
+    },
+
     toggleCollapse() {
       // this.$set(this.isCollapse, 0, true)
       this.isCollapse = true;
@@ -100,6 +112,9 @@ export default {
     } else {
       this.flag = true;
     }
+
+    this.$set(this, 'isVolunteer', sessionStorage.getItem("isVolunteer"))
+    console.log(this.isVolunteer)
   }
 
 }
@@ -127,7 +142,7 @@ export default {
 
     .title {
       span {
-        display: inline-block;
+        //display: inline-block;
         font-size: .2rem;
         line-height: .50rem;
         color: #222222;

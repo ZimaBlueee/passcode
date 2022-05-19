@@ -68,7 +68,7 @@ export default {
     },
 
     checkCount() {
-      this.$alert('<span style="color: #346c9c">请提前截图保存至手机相册,进入食堂时向志愿者出示,</span><br/><br/> <font color=green>“生活区通行码”</font>是生活区每位员工的特殊识别码，<font color=red>请勿</font>泄露给其他人，否则造成的<font color=red>一切后果由员工自行承担</font>。', '员工须知', {
+      this.$alert('<span style="color: #346c9c">请提前截图保存至手机相册，进入食堂时向志愿者出示</span><br/><br/> <font color=green>“生活区通行码”</font>是生活区每位员工的特殊识别码，请请妥善保管通行码，切勿泄露给他人。', '员工须知', {
         dangerouslyUseHTMLString: true,
         confirmButtonText: '我已知晓',
       });

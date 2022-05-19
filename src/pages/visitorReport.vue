@@ -37,6 +37,18 @@
         label="手机号">
       </el-table-column>
       <el-table-column
+        prop="sysUser.deptName"
+        label="归口部门">
+      </el-table-column>
+      <el-table-column
+        prop="sysUser.nickName"
+        label="核酸编号">
+      </el-table-column>
+      <el-table-column
+        prop="sysUser.loginName"
+        label="初始密码">
+      </el-table-column>
+      <el-table-column
         prop="today"
         label="日期">
       </el-table-column>

@@ -14,6 +14,7 @@ const applyMealTicket = r => require.ensure([], () => r(require('@/pages/applyMe
 const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMealTicket')), 'readMealTicket');
 const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')), 'mealReport');
 const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
+const visitorReport = r => require.ensure([], () => r(require('@/pages/visitorReport')), 'visitorReport');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
@@ -45,7 +46,13 @@ export default new Router({
         {
           path: '/applyCanteenVisitor',
           component: applyCanteenVisitor,
-          name: '申请食堂通行证',
+          name: '食堂通行证',
+          hidden: true
+        },
+        {
+          path: '/visitorReport',
+          component: visitorReport,
+          name: '食堂访客记录',
           hidden: true
         },
         {

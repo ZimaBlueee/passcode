@@ -13,13 +13,12 @@
           <!--  <button class="custom-btn btn-13" @click="notify">视频观看</button>-->
           <!--</div>-->
 
-          <div class="title">
-            <span @click="toRouter('/applyCanteenVisitor')">生活区通行码</span>
-            <span @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer==='true'">扫一扫</span>
-            <span @click="toRouter('/visitorReport')" v-if="this.isVolunteer==='true'">食堂人员记录</span>
-            <!-- <span @click="toRouter('/login')">登录</span> -->
-            <span @click="logout">退出</span>
-          </div>
+          <span @click="toRouter('/applyCanteenVisitor')">生活区通行码</span>
+          <span @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer==='true'">扫一扫</span>
+          <span @click="toRouter('/visitorReport')" v-if="this.isVolunteer==='true'">食堂人员记录</span>
+          <!-- <span @click="toRouter('/login')">登录</span> -->
+          <span @click="toRouter('/updatePassword')">修改密码</span>
+          <span @click="logout">退出登录</span>
 
           <!--<el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"-->
           <!--         active-text-color="#c04851">-->
@@ -125,31 +124,43 @@ export default {
 .el-header {
   padding: 0;
 
+  //.navbar {
+  //  text-align: right;
+  //
+  //  .el-menu {
+  //    float: right;
+  //    //z-index: 9999;
+  //  }
+  //
+  //  .el-menu.el-menu--horizontal {
+  //    border-bottom: solid 1px rgba(0, 0, 0, 0);
+  //  }
+  //
+  //  .el-menu-item {
+  //    font-size: 0.2rem;
+  //  }
+  //
+  //  .title {
+  //    span {
+  //      //display: inline-block;
+  //      font-size: 20px;
+  //      line-height: 20px;
+  //      color: #222222;
+  //      margin: 0 10px;
+  //      cursor: pointer;
+  //    }
+  //  }
+  //}
   .navbar {
     text-align: right;
 
-    .el-menu {
-      float: right;
-      //z-index: 9999;
-    }
-
-    .el-menu.el-menu--horizontal {
-      border-bottom: solid 1px rgba(0, 0, 0, 0);
-    }
-
-    .el-menu-item {
-      font-size: 0.2rem;
-    }
-
-    .title {
-      span {
-        //display: inline-block;
-        font-size: 20px;
-        line-height: 20px;
-        color: #222222;
-        margin: 0 10px;
-        cursor: pointer;
-      }
+    span {
+      display: inline-block;
+      font-size: 20px;
+      line-height: 20px;
+      color: #222222;
+      margin: 0 10px;
+      cursor: pointer;
     }
   }
 

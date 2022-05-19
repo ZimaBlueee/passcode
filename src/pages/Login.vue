@@ -1,28 +1,30 @@
 <template>
   <div class="center ub main-center cross-center">
     <div class="login-container">
-    <el-form size="medium" :rules="rules" ref="loginForm" :model="loginForm" class="loginForm">
-      <el-form-item label>
-        <div class="login-title ub main-center cross-center">系统登录</div>
-      </el-form-item>
-      <el-form-item prop="username" label>
-        <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名"></el-input>
-      </el-form-item>
-      <el-form-item prop="password" label>
-        <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
-      </el-form-item>
+      <el-form size="medium" :rules="rules" ref="loginForm" :model="loginForm" class="loginForm" label-position="right"
+               label-width="65px"
+               inline>
+        <el-form-item>
+          <div class="login-title ub main-center cross-center">生活区通行码平台</div>
+        </el-form-item>
+        <el-form-item prop="username" label="手机号">
+          <el-input type="text" v-model="loginForm.username" placeholder="请输入手机号"></el-input>
+        </el-form-item>
+        <el-form-item prop="password" label="密码">
+          <el-input type="password" v-model="loginForm.password" placeholder="请输入密码"></el-input>
+        </el-form-item>
 
-      <el-form-item label>
-        <el-row :gutter="20">
-          <el-col :span="12">
-            <el-button @click="submit()" class="my-button" type="primary">登录</el-button>
-          </el-col>
-          <el-col :span="12">
-            <el-button class="my-button">取消</el-button>
-          </el-col>
-        </el-row>
-      </el-form-item>
-    </el-form>
+        <el-form-item label>
+          <el-row :gutter="20">
+            <el-col>
+              <el-button @click="submit()" class="my-button" type="primary">登录</el-button>
+            </el-col>
+            <!--<el-col :span="12">-->
+            <!--  <el-button class="my-button">取消</el-button>-->
+            <!--</el-col>-->
+          </el-row>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -54,7 +56,7 @@ export default {
     };
   },
   created() {
-    if(!!sessionStorage.getItem("token")){
+    if (!!sessionStorage.getItem("token")) {
       //已登录
       this.$router.push("applyCanteenVisitor");
     }
@@ -76,6 +78,7 @@ export default {
           console.log(res);
           if (res.code === '200') {
             sessionStorage.setItem("token", res.data.token);
+            console.log(res.data.userId)
             sessionStorage.setItem("userId", res.data.userId);
             sessionStorage.setItem("expireTime", res.data.expireTime);
             sessionStorage.setItem("isVolunteer", res.data.isVolunteer);

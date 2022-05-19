@@ -15,6 +15,7 @@ const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMeal
 const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')), 'mealReport');
 const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
 const visitorReport = r => require.ensure([], () => r(require('@/pages/visitorReport')), 'visitorReport');
+const updatePassword = r => require.ensure([], () => r(require('@/pages/updatePassword')), 'updatePassword');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
@@ -41,6 +42,12 @@ export default new Router({
           path: '/home',
           component: home,
           name: '首页',
+          hidden: true
+        },
+        {
+          path: '/updatePassword',
+          component: updatePassword,
+          name: '修改密码',
           hidden: true
         },
         {

@@ -95,7 +95,6 @@ axios.interceptors.response.use(
     if (res.code && res.code !== '200') {
       if (res.code === '600') {
         sessionStorage.clear();
-        console.log(11111)
         window.location.href = '/login'
         return res;
       } else {
@@ -105,7 +104,7 @@ axios.interceptors.response.use(
           showClose: true,
           duration: 5 * 1000
         })
-        return Promise.reject(new Error(res.message || '服务器出错，请联系管理员'))
+        return Promise.reject(new Error(res.msg || '服务器出错，请联系管理员'))
       }
     } else {
       return res

@@ -26,7 +26,7 @@ export default {
   data() {
     // 校验原密码
     let validatePass = (rule, value, callback) => {
-      let userId = sessionStorage.getItem("userId");
+      let userId = localStorage.getItem("userId");
 
       const data = {
         userId: userId,
@@ -107,7 +107,7 @@ export default {
       let res = await this.axios.get("/api/user/loginOut");
       console.log(res)
       if (res.code === "200") {
-        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = "/login";
       }
     },
@@ -115,7 +115,7 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          let userId = sessionStorage.getItem("userId");
+          let userId = localStorage.getItem("userId");
           const data = {
             userId: userId,
             oldPassword: this.form.password,

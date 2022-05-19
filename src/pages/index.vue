@@ -80,7 +80,7 @@ export default {
       let res = await this.axios.get("/api/user/loginOut");
       console.log(res)
       if (res.code === "200") {
-        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = "/login";
       }
     },
@@ -113,7 +113,7 @@ export default {
       this.flag = true;
     }
 
-    this.$set(this, 'isVolunteer', sessionStorage.getItem("isVolunteer"))
+    this.$set(this, 'isVolunteer', localStorage.getItem("isVolunteer"))
     console.log(this.isVolunteer)
   }
 

@@ -36,7 +36,7 @@ export default {
 
     onSubmit() {
       let that = this
-      let userId = sessionStorage.getItem("userId");
+      let userId = localStorage.getItem("userId");
       this.axios({
         method: 'get',
         url: '/meal/generateVisitorQRCode?userId=' + userId,

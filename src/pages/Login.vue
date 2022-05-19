@@ -54,7 +54,7 @@ export default {
     };
   },
   created() {
-    if (!!sessionStorage.getItem("token")) {
+    if (!!localStorage.getItem("token")) {
       //已登录
       this.$router.push("applyCanteenVisitor");
     }
@@ -75,20 +75,20 @@ export default {
           );
           console.log(res);
           if (res.code === '200') {
-            sessionStorage.setItem("token", res.data.token);
+            localStorage.setItem("token", res.data.token);
             console.log(res.data.userId)
-            sessionStorage.setItem("userId", res.data.userId);
-            sessionStorage.setItem("expireTime", res.data.expireTime);
-            sessionStorage.setItem("isVolunteer", res.data.isVolunteer);
+            localStorage.setItem("userId", res.data.userId);
+            localStorage.setItem("expireTime", res.data.expireTime);
+            localStorage.setItem("isVolunteer", res.data.isVolunteer);
             // let menuList = res.data.menuList;
             // let routerList = res.data.routerList;
             // let authList = res.data.authList;
             // //存储菜单数据
-            // sessionStorage.setItem("menuList", JSON.stringify(menuList));
+            // localStorage.setItem("menuList", JSON.stringify(menuList));
             // //存储路由数据
-            // sessionStorage.setItem("routerList", JSON.stringify(routerList));
+            // localStorage.setItem("routerList", JSON.stringify(routerList));
             // //权限
-            // sessionStorage.setItem("authList", JSON.stringify(authList));
+            // localStorage.setItem("authList", JSON.stringify(authList));
             //提交到store
             // this.$store.commit("getMenuList", this.$router);
             //登录成功跳转到首页

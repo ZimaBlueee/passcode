@@ -31,7 +31,7 @@ axios.defaults.baseURL = baseURL
 
 function reFresh() {
   let parm = {
-    "token": sessionStorage.getItem("token")
+    "token": localStorage.getItem("token")
   }
   return axios.post("/sys/refreshToken", parm).then(res => res.data);
 }
@@ -46,7 +46,7 @@ axios.interceptors.request.use(config => {
     // 以json形式提交
     config.headers['Content-Type'] = 'application/json'
     let current = new Date().getTime(); //当前时间
-    let expireTime = sessionStorage.getItem("expireTime");//token到期时间
+    let expireTime = localStorage.getItem("expireTime");//token到期时间
     let exPMin = (expireTime - current) / 1000 / 60;
     console.log(exPMin)
     // 离token到期10分钟刷新token
@@ -55,9 +55,9 @@ axios.interceptors.request.use(config => {
         isRefresh = true;
         return reFresh().then(res => {
           if (res) {
-            sessionStorage.setItem("token", res.token);
-            sessionStorage.setItem("expireTime", res.expireTime);
-            config.headers.token = sessionStorage.getItem('token')
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("expireTime", res.expireTime);
+            config.headers.token = localStorage.getItem('token')
           }
           return config;
         }).catch(res => {
@@ -70,7 +70,7 @@ axios.interceptors.request.use(config => {
   }
 
   // 为请求头添加token字段
-  config.headers.token = sessionStorage.getItem('token')
+  config.headers.token = localStorage.getItem('token')
   return config;
 })
 
@@ -94,7 +94,7 @@ axios.interceptors.response.use(
 
     if (res.code && res.code !== '200') {
       if (res.code === '600') {
-        sessionStorage.clear();
+        localStorage.clear();
         window.location.href = '/login'
         return res;
       } else {
@@ -133,7 +133,7 @@ axios.interceptors.response.use(
 //   //设置当前激活的选项卡
 //   store.commit('setActiveTabs', to.name);
 //
-//   let token = sessionStorage.getItem('token');
+//   let token = localStorage.getItem('token');
 //   if (to.path === '/login') {
 //     if (token) {
 //       next({path: '/home'})

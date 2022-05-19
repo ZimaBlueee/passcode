@@ -1,9 +1,7 @@
 <template>
   <div class="center ub main-center cross-center">
     <div class="login-container">
-      <el-form size="medium" :rules="rules" ref="loginForm" :model="loginForm" class="loginForm" label-position="right"
-               label-width="65px"
-               inline>
+      <el-form size="medium" :rules="rules" ref="loginForm" :model="loginForm" class="loginForm" >
         <el-form-item>
           <div class="login-title ub main-center cross-center">生活区通行码平台</div>
         </el-form-item>

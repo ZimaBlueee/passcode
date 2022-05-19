@@ -1,5 +1,6 @@
 <template>
-  <div class="login-container ub main-center cross-center">
+  <div class="center ub main-center cross-center">
+    <div class="login-container">
     <el-form size="medium" :rules="rules" ref="loginForm" :model="loginForm" class="loginForm">
       <el-form-item label>
         <div class="login-title ub main-center cross-center">系统登录</div>
@@ -22,6 +23,7 @@
         </el-row>
       </el-form-item>
     </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -120,8 +122,9 @@ export default {
   height: 300px;
   width: 350px;
   border-radius: 10px;
-  box-shadow: 0 0 25px #cac6c6;
+  // box-shadow: 0 0 25px #cac6c6;
   padding: 20px 35px;
+  margin: 20px auto;
 }
 
 .login-container /deep/ .el-form-item__content {

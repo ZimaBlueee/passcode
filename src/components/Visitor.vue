@@ -16,7 +16,10 @@
       </div>
 
       <div v-if="validationSuccess" class="validation-success">
-        登记成功!
+        <!--登记成功!-->
+        {{ msg1 }}<br/>
+        {{ msg2 }}<br/>
+        {{ msg3 }}
       </div>
 
       <div v-if="validationFailure" class="validation-failure">
@@ -47,6 +50,9 @@ export default {
       isValid: undefined,
       torchActive: false,
       torchNotSupported: false,
+      msg1: '',
+      msg2: '',
+      msg3: ''
     }
   },
 
@@ -106,7 +112,13 @@ export default {
       this.turnCameraOff()
 
       // 后端接口处理数据中
-      this.isValid = await this.scanVisitorQRCode(result)
+      let info = await this.scanVisitorQRCode(result);
+      console.log(info)
+      this.isValid = info.flag
+      this.msg1 = info.username
+      this.msg2 = info.phone
+      this.msg3 = info.dprt
+
 
       // 留1秒让用户看到最后的处理结果
       await this.timeout(1000)
@@ -124,16 +136,14 @@ export default {
           }
         })
         .then(res => {
-          console.log(res)
+          // console.log(res)
+          // console.log(res.data)
+
           return res.data
         })
         .catch(err => {
           console.log(err);
-          return false
-          // this.$notify.error({
-          //   title: '错误',
-          //   message: '系统出错,请重试或联系管理员'
-          // });
+          return {'flag': false}
         })
     },
 

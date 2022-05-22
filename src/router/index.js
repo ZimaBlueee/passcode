@@ -16,6 +16,7 @@ const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')
 const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
 const visitorReport = r => require.ensure([], () => r(require('@/pages/visitorReport')), 'visitorReport');
 const updatePassword = r => require.ensure([], () => r(require('@/pages/updatePassword')), 'updatePassword');
+const batchImportUser = r => require.ensure([], () => r(require('@/pages/batchImportUser')), 'batchImportUser');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
 
 export default new Router({
@@ -102,6 +103,12 @@ export default new Router({
           path: '/mealReport',
           name: '就餐报告',
           component: mealReport,
+          hidden: true
+        },
+        {
+          path: '/batchImportUser',
+          name: '批导入人员',
+          component: batchImportUser,
           hidden: true
         },
         {

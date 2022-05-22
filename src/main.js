@@ -88,9 +88,9 @@ axios.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    console.log(response)
+    // console.log(response)
     const res = response.data
-    console.log(res.code);
+    // console.log(res.code);
 
     if (res.code && res.code !== '200') {
       if (res.code === '600') {

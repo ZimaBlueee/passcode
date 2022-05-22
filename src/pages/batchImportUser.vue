@@ -8,7 +8,8 @@
     <el-upload
       class="upload-demo center"
       drag
-      action="/meal/batchImportDormUser"
+      :action="uploadUrl()"
+      :on-success="handleUploadSuccess"
       multiple>
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -24,6 +25,19 @@ export default {
   methods: {
     toRouter(val) {
       this.$router.push(val);
+    },
+
+    // 上传接口
+    uploadUrl() {
+      return process.env.API_ROOT + '/meal/batchImportDormUser';
+    },
+    // 上传成功
+    handleUploadSuccess(res) {
+      const h = this.$createElement;
+      this.$notify({
+        title: '成功',
+        message: h('i', {style: 'color: teal'}, '文件上传成功')
+      });
     },
 
     exportExcel() {

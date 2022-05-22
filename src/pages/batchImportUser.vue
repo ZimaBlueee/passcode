@@ -9,8 +9,9 @@
       class="upload-demo center"
       drag
       :action="uploadUrl()"
+      :headers="config"
       :on-success="handleUploadSuccess"
-      multiple>
+      >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
     </el-upload>
@@ -20,7 +21,9 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      token: "",
+    }
   },
   methods: {
     toRouter(val) {
@@ -68,7 +71,14 @@ export default {
     },
   },
   mounted() {
-  }
+    this.token = localStorage.getItem("token");
+  },
+  computed: {
+    config() {
+      return {token: this.token};
+    },
+  },
+
 
 }
 </script>

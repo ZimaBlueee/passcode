@@ -16,7 +16,7 @@
           <span @click="toRouter('/applyCanteenVisitor')">生活区通行码</span>
           <span @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer==='true'">扫一扫</span>
           <span @click="toRouter('/visitorReport')" v-if="this.isVolunteer==='true'">食堂人员记录</span>
-          <span @click="toRouter('/batchImportUser')" v-if="this.isVolunteer==='true'">批量新增人员</span>
+          <span @click="toRouter('/batchImportUser')" v-if="this.isVolunteer==='true'">批量管理人员</span>
           <!-- <span @click="toRouter('/login')">登录</span> -->
           <span @click="toRouter('/updatePassword')">修改密码</span>
           <span @click="logout">退出登录</span>

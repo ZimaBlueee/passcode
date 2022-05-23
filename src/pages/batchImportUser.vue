@@ -11,10 +11,22 @@
       :action="uploadUrl()"
       :headers="config"
       :on-success="handleUploadSuccess"
-      >
+    >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
     </el-upload>
+
+    <div class="center">
+      <el-input
+        style="width: 50%"
+        placeholder="请输入手机号"
+        v-model="input"
+        clearable>
+        <template slot="append">
+          <el-button type="danger" @click='ban()'>封禁此人账号</el-button>
+        </template>
+      </el-input>
+    </div>
   </div>
 </template>
 
@@ -22,12 +34,27 @@
 export default {
   data() {
     return {
-      token: "",
+      token: '',
+      input: ''
     }
   },
   methods: {
     toRouter(val) {
       this.$router.push(val);
+    },
+
+    ban() {
+      if (this.input === '') {
+        this.$message.error('请先填入要封禁的手机号');
+        return
+      }
+
+      this.axios
+        .get(`/meal/ban/${this.input}`)
+        .then(res => {
+          console.log(res)
+          this.$message.success('封禁成功');
+        });
     },
 
     // 上传接口
@@ -87,6 +114,7 @@ export default {
 <style lang="scss">
 .upload-demo {
   margin-top: 0.4rem;
+  margin-bottom: 0.7rem;
 }
 
 

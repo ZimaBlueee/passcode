@@ -26,7 +26,7 @@
           <el-menu v-if=flag :default-active="activeIndex" class="el-menu" mode="horizontal"
                    active-text-color="#c04851">
             <el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">生活区通行码</el-menu-item>
-            <el-menu-item index="readVisitorQRCode" @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer==='true'">扫一扫</el-menu-item>
+            <el-menu-item index="checkIn" @click="toRouter('/checkIn')" v-if="this.isVolunteer==='true'">扫一扫</el-menu-item>
             <el-menu-item index="nucleinRegister" @click="toRouter('/nucleinRegister')" v-if="this.isVolunteer==='true'">核酸登记表</el-menu-item>
             <el-menu-item index="userManage" @click="toRouter('/userManage')" v-if="this.isVolunteer==='true'">人员管理</el-menu-item>
             <el-menu-item index="updatePassword" @click="toRouter('/updatePassword')">修改密码</el-menu-item>
@@ -53,7 +53,7 @@
               </template>
 
               <el-menu-item index="applyCanteenVisitor" @click="toRouter('/applyCanteenVisitor')">生活区通行码</el-menu-item>
-              <el-menu-item index="readVisitorQRCode" @click="toRouter('/readVisitorQRCode')" v-if="this.isVolunteer==='true'">扫一扫</el-menu-item>
+              <el-menu-item index="checkIn" @click="toRouter('/checkIn')" v-if="this.isVolunteer==='true'">扫一扫</el-menu-item>
               <el-menu-item index="nucleinRegister" @click="toRouter('/nucleinRegister')" v-if="this.isVolunteer==='true'">核酸登记表</el-menu-item>
               <el-menu-item index="userManage" @click="toRouter('/userManage')" v-if="this.isVolunteer==='true'">人员管理</el-menu-item>
               <el-menu-item index="updatePassword" @click="toRouter('/updatePassword')">修改密码</el-menu-item>

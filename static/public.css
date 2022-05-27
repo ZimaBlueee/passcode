@@ -49,3 +49,21 @@ html, body, #app {
 .el-message-box {
   width: initial !important;
 }
+.el-date-picker__header{
+  overflow: hidden;
+}
+.el-date-picker__header .el-date-picker__header-label{
+  float: left;
+}
+.el-date-picker__header .el-date-picker__header-label:first-of-type{
+  margin-left: 70px;
+}
+
+.queryCard{
+  padding-bottom: 10px;
+  width: 100%;
+}
+.toolbar{
+  text-align: right;
+}
+

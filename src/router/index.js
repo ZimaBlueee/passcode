@@ -15,10 +15,11 @@ const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMeal
 const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')), 'mealReport');
 const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
 const visitorReport = r => require.ensure([], () => r(require('@/pages/visitorReport')), 'visitorReport');
+const nucleinRegister = r => require.ensure([], () => r(require('@/pages/nucleinRegister')), 'visitorReport');
+const userManage = r => require.ensure([], () => r(require('@/pages/userManage')), 'visitorReport');
 const updatePassword = r => require.ensure([], () => r(require('@/pages/updatePassword')), 'updatePassword');
 const batchImportUser = r => require.ensure([], () => r(require('@/pages/batchImportUser')), 'batchImportUser');
 const test = r => require.ensure([], () => r(require('@/pages/test')), 'test');
-
 export default new Router({
   routes: [
     // {
@@ -61,6 +62,18 @@ export default new Router({
           path: '/visitorReport',
           component: visitorReport,
           name: '食堂访客记录',
+          hidden: true
+        },
+        {
+          path: '/nucleinRegister',
+          component: nucleinRegister,
+          name: '核酸登记记录',
+          hidden: true
+        },
+        {
+          path: '/userManage',
+          component: userManage,
+          name: '人员管理',
           hidden: true
         },
         {

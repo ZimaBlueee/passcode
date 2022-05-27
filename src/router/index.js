@@ -12,6 +12,7 @@ const calculator = r => require.ensure([], () => r(require('@/pages/calculator')
 const read = r => require.ensure([], () => r(require('@/pages/read')), 'read');
 const applyMealTicket = r => require.ensure([], () => r(require('@/pages/applyMealTicket')), 'applyMealTicket');
 const readMealTicket = r => require.ensure([], () => r(require('@/pages/readMealTicket')), 'readMealTicket');
+const checkIn = r => require.ensure([], () => r(require('@/pages/checkIn')), 'checkIn');
 const mealReport = r => require.ensure([], () => r(require('@/pages/mealReport')), 'mealReport');
 const login = r => require.ensure([], () => r(require('@/pages/Login')), 'login');
 const visitorReport = r => require.ensure([], () => r(require('@/pages/visitorReport')), 'visitorReport');
@@ -107,9 +108,9 @@ export default new Router({
           hidden: true
         },
         {
-          path: '/readMealTicket',
+          path: '/checkIn',
           name: '扫一扫',
-          component: readMealTicket,
+          component: checkIn,
           hidden: true
         },
         {

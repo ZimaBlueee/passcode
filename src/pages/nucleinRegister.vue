@@ -1,20 +1,21 @@
 <template>
-<!-- 核酸登记页 -->
+  <!-- 核酸登记页 -->
   <div>
     <div class="queryCard">
-        <el-date-picker
-          v-model="date"
-          type="date"
-          placeholder="选择日期">
-        </el-date-picker>
-        <el-button type="primary" icon="el-icon-search" @click="queryVisitorReport">查询</el-button>
+      <el-date-picker
+        v-model="date"
+        type="date"
+        placeholder="选择日期"
+        value-format="yyyy-MM-dd">
+      </el-date-picker>
+      <el-button type="primary" icon="el-icon-search" @click="queryTodayUser">查询</el-button>
     </div>
     <div class="toolbar">
-        <el-button type="primary" size="small" @click="getTodayUserList">生成今日登记表</el-button>
+      <el-button type="primary" size="small" @click="generateTodayUser">生成今日登记表</el-button>
     </div>
     <div class="tableTop">
-      <div><span>未登记</span>{{ this.unregisteredNum}}</div>
-      <div><span>已登记</span>{{ this.registeredNum}}</div>
+      <div><span>未登记</span><font color="red">{{ this.unregisteredNum }}</font></div>
+      <div><span>已登记</span><font color="green">{{ this.registeredNum }}</font></div>
     </div>
 
     <el-table
@@ -25,8 +26,7 @@
       :data="tableData"
       stripe
       style="width: 100%"
-      height="500px"
-      >
+    >
       <el-table-column
         prop="sysUser.username"
         label="姓名">
@@ -51,8 +51,13 @@
         prop="check"
         label="是否登记">
         <template slot-scope="scope">
-          <span v-if="scope.row.check=='0'" >否</span>
-          <span v-if="scope.row.check=='1'" >是</span>
+          <el-tag
+            :type="scope.row.check == '0' ? 'danger' : 'success'"
+          >
+            <span v-if="scope.row.check=='0'">否</span>
+            <span v-if="scope.row.check=='1'">是</span>
+          </el-tag>
+
         </template>
       </el-table-column>
     </el-table>
@@ -74,11 +79,11 @@
 export default {
   data() {
     return {
-      date:'',
+      date: '',
       tableData: [],
       currentPage: 1,
       pageSize: 50,
-      
+
       total: 0,
       unregisteredNum: 0,
       registeredNum: 0,
@@ -92,15 +97,15 @@ export default {
 
     handleSizeChange(val) {
       this.pageSize = val;
-      this.queryVisitorReport();
+      this.queryTodayUser();
     },
 
     handleCurrentChange(val) {
       this.currentPage = val;
-      this.queryVisitorReport();
+      this.queryTodayUser();
     },
 
-    queryVisitorReport() {
+    queryTodayUser() {
       if (!this.date) {
         this.$message({
           message: '请先选择日期',
@@ -116,11 +121,11 @@ export default {
         pageSize: this.pageSize
       };
       const params = {
-        'date': this.date
+        'today': this.date
       }
       this.tableData = []
       this.axios
-        .post(`/meal/queryVisitorReport/`, data, {params})
+        .post(`/meal/queryTodayUser/`, data, {params})
         .then(res => res.data)
         .then(data => {
           this.tableData = data.items;
@@ -128,25 +133,26 @@ export default {
           this.unregisteredNum = data.unregisteredNum
           this.registeredNum = data.registeredNum
           this.loading = false;
-        }).catch((err)=>{
+        }).catch((err) => {
+          console.log(err)
           this.loading = false;
         }
-        )
+      )
     },
 
-    getTodayUserList() {
+    generateTodayUser() {
       this.loading = true;
+      const today = new Date().Format("yyyy-MM-dd");
       this.axios
-        .post(`/meal/queryVisitorReport`)
-        .then(res => res.data)
-        .then(data => {
-          const today = new Date().Format("yyyy-MM-dd");
-          this.date = today;
-          this.queryVisitorReport()
-        }).catch((err)=>{
+        .get(`/meal/generateTodayUser/${today}`)
+        .then(res => {
+          console.log(res)
           this.loading = false;
-        }
-        )
+          this.queryTodayUser()
+        })
+        .catch((err) => {
+          this.loading = false;
+        })
     },
 
     formatBreakFast(row, index) {
@@ -196,9 +202,8 @@ export default {
       return fmt;
     }
 
-    const today = new Date().Format("yyyy-MM-dd");
-    this.date = today;
-    this.queryVisitorReport()
+    this.date = new Date().Format("yyyy-MM-dd");
+    this.queryTodayUser()
   }
 }
 </script>
@@ -212,16 +217,19 @@ export default {
 .el-descriptions {
   margin-top: .25rem;
 }
-.tableTop{
+
+.tableTop {
   font-size: 28px;
   width: 100%;
   padding: 5px;
   overflow: hidden;
-  div{
+
+  div {
     float: left;
     width: 20%;
     min-width: 200px;
-    span{
+
+    span {
       font-weight: bold;
       font-size: 18px;
       color: #909399;
@@ -229,6 +237,7 @@ export default {
     }
   }
 }
+
 .el-table {
   margin-top: .4rem;
 }

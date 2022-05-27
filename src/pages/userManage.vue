@@ -1,28 +1,27 @@
 <template>
-<!-- 核酸登记页 -->
   <div>
     <div class="queryCard">
       <div style="width:200px;display:inline-block">
         <el-input v-model="mobile" placeholder="手机号" :clearable="true"></el-input>
       </div>
-        
-        <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
+
+      <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
     </div>
     <div class="toolbar">
-        <el-button type="primary" size="small" @click="addUserClick">新增</el-button>
-        <el-button type="primary" size="small" @click="exportExcel">下载模板</el-button>
-        <el-upload
-          class="upload-button"
-          :action="uploadUrl()"
-          :headers="config"
-          :on-success="handleUploadSuccess"
-          :show-file-list="false"
-          >
-          <el-button size="small" type="primary">批量导入</el-button>
-        </el-upload>
+      <el-button type="primary" size="small" @click="addUserClick">新增</el-button>
+      <el-button type="primary" size="small" @click="exportExcel">下载模板</el-button>
+      <el-upload
+        class="upload-button"
+        :action="uploadUrl()"
+        :headers="config"
+        :on-success="handleUploadSuccess"
+        :show-file-list="false"
+      >
+        <el-button size="small" type="primary">批量导入</el-button>
+      </el-upload>
 
-        <el-button type="primary" size="small" @click="sealAccount">封号</el-button>
-        <el-button type="primary" size="small" @click="unsealAccount">解封</el-button>
+      <el-button type="primary" size="small" @click="sealAccount">封号</el-button>
+      <el-button type="primary" size="small" @click="unsealAccount">解封</el-button>
     </div>
 
     <el-table
@@ -35,8 +34,7 @@
       @current-change="handleCurrentRowChange"
       stripe
       style="width: 100%"
-      height="600px"
-      >
+    >
       <el-table-column
         prop="username"
         label="姓名">
@@ -57,8 +55,8 @@
         prop="accountNonLocked"
         label="账户是否被锁定">
         <template slot-scope="scope">
-          <span v-if="scope.row.accountNonLocked == true" >未锁定</span>
-          <span v-else >已锁定</span>
+          <span v-if="scope.row.accountNonLocked === true">未锁定</span>
+          <span v-else>已锁定</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -69,8 +67,8 @@
         prop="isVolunteer"
         label="是否是管理员">
         <template slot-scope="scope">
-          <span v-if="scope.row.isVolunteer == true" >是</span>
-          <span v-else >否</span>
+          <span v-if="scope.row.isVolunteer === true">是</span>
+          <span v-else>否</span>
         </template>
       </el-table-column>
     </el-table>
@@ -86,9 +84,9 @@
     </el-pagination>
 
 
-    <el-dialog title="新增" width="800px"  :visible.sync="addDialogVisable" :close-on-click-modal="false" >
+    <el-dialog title="新增" width="800px" :visible.sync="addDialogVisable" :close-on-click-modal="false">
       <el-form :model="addForm" ref="addForm" :rules="addFormRules" v-loading="addDialogLoading">
-        <el-form-item label="姓名" :label-width="formLabelWidth"  prop="username">
+        <el-form-item label="姓名" :label-width="formLabelWidth" prop="username">
           <el-input v-model="addForm.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="手机号" :label-width="formLabelWidth" prop="mobile">
@@ -114,36 +112,36 @@
 export default {
   data() {
     return {
-      mobile:'',
+      mobile: '',
       tableData: [],
       currentPage: 1,
       pageSize: 50,
-      
+
       total: 0,
       loading: false,
 
-      currentRow:null,
+      currentRow: null,
 
-      formLabelWidth:"100px",
+      formLabelWidth: "100px",
 
-      addDialogVisable:false,
-      addDialogLoading:false,
-      addForm:{},
+      addDialogVisable: false,
+      addDialogLoading: false,
+      addForm: {},
       addFormRules: {
-          username: [
-            { required: true, message: '请输入姓名', trigger: 'blur' }
-          ],
-          mobile: [
-            { required: true, message: '请输入手机号', trigger: 'blur' }
-          ],
-          deptName: [
-            { required: true, message: '请输入部门', trigger: 'blur' }
-          ]
-        },
+        username: [
+          {required: true, message: '请输入姓名', trigger: 'blur'}
+        ],
+        mobile: [
+          {required: true, message: '请输入手机号', trigger: 'blur'}
+        ],
+        deptName: [
+          {required: true, message: '请输入部门', trigger: 'blur'}
+        ]
+      },
 
       token: '',
 
-      
+
     }
   },
   methods: {
@@ -151,30 +149,39 @@ export default {
       this.$router.push(val);
     },
 
-    addUserClick(){
-      this.addDialogVisable=true
-      this.$refs["addForm"].resetFields();
-      this.addForm={}
+    addUserClick() {
+      this.addDialogVisable = true
+      this.resetForm("addForm")
+      this.addForm = {}
     },
 
-    addUser(){
+    // 解决重置表单时报 'resetFields' of undefined的错
+    resetForm(formName) {
+      if (this.$refs[formName]) {
+        this.$refs[formName].resetFields();
+      }
+    },
+
+    addUser() {
       this.$refs["addForm"].validate((valid) => {
         if (valid) {
           this.addDialogLoading = true;
           const params = this.addForm
           this.axios
-            .post(`/meal/queryAllUser/`,params)
-            .then(res => res.data)
-            .then(data => {
-              const today = new Date().Format("yyyy-MM-dd");
-              this.mobile = "";
-              this.queryAllUser()
-            }).catch((err)=>{
-              this.loading = false;
-            }
-            )
-
-          this.addDialogVisable=false
+            .post(`/sysUser/addUser`, params)
+            .then(res => {
+              console.log(res)
+              this.addDialogLoading = false;
+              this.$message({
+                message: '新增人员成功',
+                type: 'success'
+              });
+            })
+            .catch(err => {
+              this.addDialogLoading = false;
+              console.log(err)
+            })
+          this.addDialogVisable = false
         } else {
           console.log('error submit!!');
           return false;
@@ -222,33 +229,31 @@ export default {
     },
 
     handleCurrentRowChange(val) {
-        this.currentRow = val;
-        console.log(this.currentRow)
+      this.currentRow = val;
+      console.log(this.currentRow)
     },
 
-    sealAccount(){
-      if (!this.currentRow.mobile) {
-        this.$message.error('请选择人员');
+    sealAccount() {
+      if (!this.currentRow) {
+        this.$message.error('请先选择人员');
         return
       }
       this.axios
         .get(`/meal/ban/${this.currentRow.mobile}`)
         .then(res => {
-          console.log(res)
           this.$message.success('封禁成功');
           this.queryAllUser()
         });
     },
 
-    unsealAccount(){
-      if (!this.currentRow.mobile) {
-        this.$message.error('请选择人员');
+    unsealAccount() {
+      if (!this.currentRow) {
+        this.$message.error('请先选择人员');
         return
       }
       this.axios
-        .get(`/meal/ban/${this.currentRow.mobile}`)
+        .get(`/sysUser/unblock/${this.currentRow.mobile}`)
         .then(res => {
-          console.log(res)
           this.$message.success('解封成功');
           this.queryAllUser()
         });
@@ -283,10 +288,10 @@ export default {
           this.tableData = data.items;
           this.total = data.total
           this.loading = false;
-        }).catch((err)=>{
+        }).catch((err) => {
           this.loading = false;
         }
-        )
+      )
     },
 
 
@@ -339,11 +344,13 @@ export default {
 .el-descriptions {
   margin-top: .25rem;
 }
+
 .el-table {
   margin-top: .4rem;
 }
-.upload-button{
-    display: inline-block;
-    margin: 0 10px;
+
+.upload-button {
+  display: inline-block;
+  margin: 0 10px;
 }
 </style>

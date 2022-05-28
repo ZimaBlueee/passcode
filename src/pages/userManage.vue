@@ -9,6 +9,7 @@
     </div>
     <div class="toolbar">
       <el-button type="success" size="small" @click="addUserClick">新增</el-button>
+      <el-button type="primary" size="small" @click="editUserClick">编辑</el-button>
       <el-button type="primary" size="small" @click="exportExcel">下载模板</el-button>
       <el-upload
         class="upload-button"
@@ -84,30 +85,30 @@
     </el-pagination>
 
 
-    <el-dialog title="新增" width="800px" :visible.sync="addDialogVisable" :close-on-click-modal="false">
-      <el-form :model="addForm" ref="addForm" :rules="addFormRules" v-loading="addDialogLoading">
+    <el-dialog :title="dialogTitle" width="800px" :visible.sync="dialogVisable" :close-on-click-modal="false">
+      <el-form :model="dialogForm" ref="dialogForm" :rules="dialogFormRules" v-loading="dialogLoading">
         <el-form-item label="姓名" :label-width="formLabelWidth" prop="username">
-          <el-input v-model="addForm.username" autocomplete="off"></el-input>
+          <el-input v-model="dialogForm.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="手机号" :label-width="formLabelWidth" prop="mobile">
-          <el-input v-model="addForm.mobile" autocomplete="off"></el-input>
+          <el-input v-model="dialogForm.mobile" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="部门" :label-width="formLabelWidth" prop="deptName">
-          <el-input v-model="addForm.deptName" autocomplete="off"></el-input>
+          <el-input v-model="dialogForm.deptName" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="管理员" :label-width="formLabelWidth" prop="isVolunteer">
-          <el-radio-group v-model="addForm.isVolunteer">
-            <el-radio label=true>是管理员</el-radio>
-            <el-radio label=false>不是</el-radio>
+          <el-radio-group v-model="dialogForm.isVolunteer">
+            <el-radio :label='true'>是管理员</el-radio>
+            <el-radio :label='false'>不是</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="核酸编号" :label-width="formLabelWidth" prop="nickName">
-          <el-input v-model="addForm.nickName" autocomplete="off"></el-input>
+          <el-input v-model="dialogForm.nickName" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="addDialogVisable = false;addDialogLoading=false">取 消</el-button>
-        <el-button type="primary" @click="addUser">确 定</el-button>
+        <el-button @click="dialogVisable = false;dialogLoading=false">取 消</el-button>
+        <el-button type="primary" @click="addUser" >确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -130,12 +131,14 @@ export default {
 
       formLabelWidth: "100px",
 
-      addDialogVisable: false,
-      addDialogLoading: false,
-      addForm: {
+      dialogTitle:"",
+
+      dialogVisable: false,
+      dialogLoading: false,
+      dialogForm: {
         isVolunteer: false
       },
-      addFormRules: {
+      dialogFormRules: {
         username: [
           {required: true, message: '请输入姓名', trigger: 'blur'}
         ],
@@ -161,12 +164,23 @@ export default {
     },
 
     addUserClick() {
-      this.addDialogVisable = true
-      this.resetForm("addForm")
-      this.addForm = {}
-      // this.addForm.isVolunteer = false
-      this.addForm = {isVolunteer: 'false'}
-      console.log(this.addForm)
+      this.dialogTitle="新增"
+      this.dialogVisable = true
+      this.resetForm("dialogForm")
+      this.dialogForm = {}
+      // this.dialogForm.isVolunteer = false
+      this.dialogForm = {isVolunteer:false}
+    },
+    editUserClick() {
+      if (!this.currentRow) {
+        this.$message.error('请先选择人员');
+        return
+      }
+      this.dialogTitle="编辑"
+      this.dialogVisable = true
+      this.resetForm("dialogForm")
+      this.dialogForm = JSON.parse(JSON.stringify(this.currentRow))
+      console.log(this.dialogForm)
     },
 
     // 解决重置表单时报 'resetFields' of undefined的错
@@ -177,25 +191,25 @@ export default {
     },
 
     addUser() {
-      this.$refs["addForm"].validate((valid) => {
+      this.$refs["dialogForm"].validate((valid) => {
         if (valid) {
-          this.addDialogLoading = true;
-          const params = this.addForm
+          this.dialogLoading = true;
+          const params = this.dialogForm
           this.axios
             .post(`/sysUser/addUser`, params)
             .then(res => {
               console.log(res)
-              this.addDialogLoading = false;
+              this.queryAllUser()
               this.$message({
-                message: '新增人员成功',
+                message: this.dialogTitle+'人员成功',
                 type: 'success'
               });
             })
             .catch(err => {
-              this.addDialogLoading = false;
+              this.dialogLoading = false;
               console.log(err)
             })
-          this.addDialogVisable = false
+          this.dialogVisable = false
         } else {
           console.log('error submit!!');
           return false;
@@ -244,7 +258,6 @@ export default {
 
     handleCurrentRowChange(val) {
       this.currentRow = val;
-      console.log(this.currentRow)
     },
 
     sealAccount() {

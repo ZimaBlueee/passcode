@@ -8,9 +8,9 @@
       <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
     </div>
     <div class="toolbar">
-      <el-button type="success" size="small" @click="addUserClick">新增</el-button>
+      <el-button type="primary" size="small" @click="addUserClick">新增</el-button>
       <el-button type="primary" size="small" @click="editUserClick">编辑</el-button>
-      <el-button type="primary" size="small" @click="exportExcel">下载模板</el-button>
+      <el-button type="success" size="small" @click="exportExcel">下载模板</el-button>
       <el-upload
         class="upload-button"
         :action="uploadUrl()"
@@ -18,7 +18,7 @@
         :on-success="handleUploadSuccess"
         :show-file-list="false"
       >
-        <el-button size="small" type="primary">批量导入</el-button>
+        <el-button size="small" type="success">批量导入</el-button>
       </el-upload>
 
       <el-button type="danger " size="small" @click="sealAccount">封号</el-button>

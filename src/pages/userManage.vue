@@ -8,7 +8,7 @@
       <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
     </div>
     <div class="toolbar">
-      <el-button type="primary" size="small" @click="addUserClick">新增</el-button>
+      <el-button type="success" size="small" @click="addUserClick">新增</el-button>
       <el-button type="primary" size="small" @click="exportExcel">下载模板</el-button>
       <el-upload
         class="upload-button"
@@ -20,8 +20,8 @@
         <el-button size="small" type="primary">批量导入</el-button>
       </el-upload>
 
-      <el-button type="primary" size="small" @click="sealAccount">封号</el-button>
-      <el-button type="primary" size="small" @click="unsealAccount">解封</el-button>
+      <el-button type="danger " size="small" @click="sealAccount">封号</el-button>
+      <el-button type="warning" size="small" @click="unsealAccount">解封</el-button>
     </div>
 
     <el-table
@@ -95,6 +95,12 @@
         <el-form-item label="部门" :label-width="formLabelWidth" prop="deptName">
           <el-input v-model="addForm.deptName" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item label="管理员" :label-width="formLabelWidth" prop="isVolunteer">
+          <el-radio-group v-model="addForm.isVolunteer">
+            <el-radio label=true>是管理员</el-radio>
+            <el-radio label=false>不是</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-form-item label="核酸编号" :label-width="formLabelWidth" prop="nickName">
           <el-input v-model="addForm.nickName" autocomplete="off"></el-input>
         </el-form-item>
@@ -126,7 +132,9 @@ export default {
 
       addDialogVisable: false,
       addDialogLoading: false,
-      addForm: {},
+      addForm: {
+        isVolunteer: false
+      },
       addFormRules: {
         username: [
           {required: true, message: '请输入姓名', trigger: 'blur'}
@@ -136,6 +144,9 @@ export default {
         ],
         deptName: [
           {required: true, message: '请输入部门', trigger: 'blur'}
+        ],
+        isVolunteer: [
+          {required: true, message: '请选择是否是管理员', trigger: 'blur'}
         ]
       },
 
@@ -153,6 +164,9 @@ export default {
       this.addDialogVisable = true
       this.resetForm("addForm")
       this.addForm = {}
+      // this.addForm.isVolunteer = false
+      this.addForm = {isVolunteer: 'false'}
+      console.log(this.addForm)
     },
 
     // 解决重置表单时报 'resetFields' of undefined的错

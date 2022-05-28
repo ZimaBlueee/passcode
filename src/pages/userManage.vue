@@ -199,6 +199,8 @@ export default {
             .post(`/sysUser/addUser`, params)
             .then(res => {
               console.log(res)
+              this.dialogLoading = false;
+              this.dialogVisable = false
               this.queryAllUser()
               this.$message({
                 message: this.dialogTitle+'人员成功',
@@ -209,7 +211,6 @@ export default {
               this.dialogLoading = false;
               console.log(err)
             })
-          this.dialogVisable = false
         } else {
           console.log('error submit!!');
           return false;

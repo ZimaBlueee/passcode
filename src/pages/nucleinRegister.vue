@@ -8,6 +8,9 @@
         placeholder="选择日期"
         value-format="yyyy-MM-dd">
       </el-date-picker>
+      <div style="width:200px;display:inline-block">
+        <el-input v-model="username" placeholder="姓名" :clearable="true"></el-input>
+      </div>
       <el-button type="primary" icon="el-icon-search" @click="queryTodayUser">查询</el-button>
     </div>
     <div class="toolbar">
@@ -86,6 +89,7 @@
 export default {
   data() {
     return {
+      username: '',
       date: '',
       tableData: [],
       currentPage: 1,
@@ -148,7 +152,8 @@ export default {
         pageSize: this.pageSize
       };
       const params = {
-        'today': this.date
+        'today': this.date,
+        'username': this.username
       }
       this.tableData = []
       this.axios

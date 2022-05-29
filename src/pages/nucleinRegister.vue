@@ -12,6 +12,7 @@
     </div>
     <div class="toolbar">
       <el-button type="primary" size="small" @click="generateTodayUser">生成今日登记表</el-button>
+      <el-button type="warning" size="small" @click="helpEmployeeRegister">帮不便员工登记</el-button>
     </div>
     <div class="tableTop">
       <div><span>未登记</span><font color="red">{{ this.unregisteredNum }}</font></div>
@@ -24,9 +25,15 @@
       element-loading-spinner="el-icon-loading"
       element-loading-background="rgba(0, 0, 0, 0.8)"
       :data="tableData"
+      highlight-current-row
+      @current-change="handleCurrentRowChange"
       stripe
       style="width: 100%"
     >
+      <el-table-column
+        type="index"
+        width="50">
+      </el-table-column>
       <el-table-column
         prop="sysUser.username"
         label="姓名">
@@ -84,6 +91,8 @@ export default {
       currentPage: 1,
       pageSize: 50,
 
+      currentRow: null,
+
       total: 0,
       unregisteredNum: 0,
       registeredNum: 0,
@@ -93,6 +102,24 @@ export default {
   methods: {
     toRouter(val) {
       this.$router.push(val);
+    },
+
+    handleCurrentRowChange(val) {
+      this.currentRow = val;
+      console.log(this.currentRow)
+    },
+
+    helpEmployeeRegister() {
+      if (!this.currentRow) {
+        this.$message.error('请先选择人员');
+        return
+      }
+      this.axios
+        .get(`/sysUser/helpEmployeeRegister/${this.currentRow.checkInId}`)
+        .then(res => {
+          this.$message.success('帮员工登记成功');
+          this.queryTodayUser()
+        });
     },
 
     handleSizeChange(val) {
@@ -241,4 +268,5 @@ export default {
 .el-table {
   margin-top: .4rem;
 }
+
 </style>

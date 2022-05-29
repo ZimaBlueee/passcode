@@ -48,7 +48,7 @@ axios.interceptors.request.use(config => {
     let current = new Date().getTime(); //当前时间
     let expireTime = localStorage.getItem("expireTime");//token到期时间
     let exPMin = (expireTime - current) / 1000 / 60;
-    console.log(exPMin)
+    // console.log(exPMin)
     // 离token到期10分钟刷新token
     if (exPMin < 10) {
       if (!isRefresh) {
@@ -61,7 +61,7 @@ axios.interceptors.request.use(config => {
           }
           return config;
         }).catch(res => {
-          console.log(res)
+          // console.log(res)
         }).finally(() => {
           isRefresh = false;
         })
@@ -88,9 +88,9 @@ axios.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    console.log(response)
+    // console.log(response)
     const res = response.data
-    console.log(res.code);
+    // console.log(res.code);
 
     if (res.code && res.code !== '200') {
       if (res.code === '600') {

@@ -2,7 +2,8 @@
   <div>
     <div class="queryCard">
       <div style="width:200px;display:inline-block">
-        <el-input v-model="mobile" placeholder="手机号" :clearable="true"></el-input>
+        <el-input v-model="username" placeholder="姓名" :clearable="true"></el-input>
+        <!--<el-input v-model="mobile" placeholder="手机号" :clearable="true"></el-input>-->
       </div>
 
       <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
@@ -21,6 +22,7 @@
         <el-button size="small" type="success">批量导入</el-button>
       </el-upload>
 
+      <el-button type="info" size="small" @click="resetPassword">重置密码</el-button>
       <el-button type="danger " size="small" @click="sealAccount">封号</el-button>
       <el-button type="warning" size="small" @click="unsealAccount">解封</el-button>
     </div>
@@ -36,6 +38,10 @@
       stripe
       style="width: 100%"
     >
+      <el-table-column
+        type="index"
+        width="50">
+      </el-table-column>
       <el-table-column
         prop="username"
         label="姓名">
@@ -119,6 +125,7 @@
 export default {
   data() {
     return {
+      username: '',
       mobile: '',
       tableData: [],
       currentPage: 1,
@@ -161,6 +168,19 @@ export default {
   methods: {
     toRouter(val) {
       this.$router.push(val);
+    },
+
+    resetPassword() {
+      if (!this.currentRow) {
+        this.$message.error('请先选择人员');
+        return
+      }
+      this.axios
+        .get(`/sysUser/resetPassword/${this.currentRow.id}`)
+        .then(res => {
+          this.$message.success('成功重置密码为手机号');
+          this.queryAllUser()
+        });
     },
 
     addUserClick() {
@@ -259,6 +279,7 @@ export default {
 
     handleCurrentRowChange(val) {
       this.currentRow = val;
+      console.log(this.currentRow)
     },
 
     sealAccount() {
@@ -305,7 +326,7 @@ export default {
         pageSize: this.pageSize
       };
       const params = {
-        'mobile': this.mobile
+        'username': this.username
       }
 
       this.tableData = []

@@ -9,7 +9,7 @@
       value-format="yyyy-MM-dd">
     </el-date-picker>
 
-    <el-button type="primary" icon="el-icon-search" @click="queryVisitorReport">查询</el-button>
+    <el-button type="primary" icon="el-icon-search" @click="queryVisitorReportClick">查询</el-button>
 
     <el-descriptions title="统计" :column="3" border>
       <el-descriptions-item label="进入人数">
@@ -96,11 +96,16 @@ export default {
 
     handleSizeChange(val) {
       this.pageSize = val;
-      this.queryVisitorReport();
+      this.queryVisitorReportClick();
     },
 
     handleCurrentChange(val) {
       this.currentPage = val;
+      this.queryVisitorReport();
+    },
+
+    queryVisitorReportClick() {
+      this.currentPage = 1;
       this.queryVisitorReport();
     },
 
@@ -186,7 +191,7 @@ export default {
 
     const today = new Date().Format("yyyy-MM-dd");
     this.dateRange = [today, today]
-    this.queryVisitorReport()
+    this.queryVisitorReportClick()
   }
 }
 </script>

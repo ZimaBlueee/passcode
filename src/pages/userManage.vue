@@ -6,7 +6,7 @@
         <!--<el-input v-model="mobile" placeholder="手机号" :clearable="true"></el-input>-->
       </div>
 
-      <el-button type="primary" icon="el-icon-search" @click="queryAllUser">查询</el-button>
+      <el-button type="primary" icon="el-icon-search" @click="queryAllUserClick">查询</el-button>
     </div>
     <div class="toolbar">
       <el-button type="primary" size="small" @click="addUserClick">新增</el-button>
@@ -221,7 +221,7 @@ export default {
               console.log(res)
               this.dialogLoading = false;
               this.dialogVisable = false
-              this.queryAllUser()
+              this.queryAllUserClick()
               this.$message({
                 message: this.dialogTitle+'人员成功',
                 type: 'success'
@@ -310,11 +310,16 @@ export default {
 
     handleSizeChange(val) {
       this.pageSize = val;
-      this.queryAllUser();
+      this.queryAllUserClick();
     },
 
     handleCurrentChange(val) {
       this.currentPage = val;
+      this.queryAllUser();
+    },
+
+    queryAllUserClick() {
+      this.currentPage = 1;
       this.queryAllUser();
     },
 
@@ -370,7 +375,7 @@ export default {
     }
 
     const today = new Date().Format("yyyy-MM-dd");
-    this.queryAllUser()
+    this.queryAllUserClick()
   },
 
   mounted() {

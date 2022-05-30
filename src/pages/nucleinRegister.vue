@@ -11,7 +11,7 @@
       <div style="width:200px;display:inline-block">
         <el-input v-model="username" placeholder="姓名" :clearable="true"></el-input>
       </div>
-      <el-button type="primary" icon="el-icon-search" @click="queryTodayUser">查询</el-button>
+      <el-button type="primary" icon="el-icon-search" @click="queryTodayUserClick">查询</el-button>
     </div>
     <div class="toolbar">
       <el-button type="primary" size="small" @click="generateTodayUser">生成今日登记表</el-button>
@@ -128,11 +128,16 @@ export default {
 
     handleSizeChange(val) {
       this.pageSize = val;
-      this.queryTodayUser();
+      this.queryTodayUserClick();
     },
 
     handleCurrentChange(val) {
       this.currentPage = val;
+      this.queryTodayUser();
+    },
+
+    queryTodayUserClick(){
+      this.currentPage = 1;
       this.queryTodayUser();
     },
 
@@ -180,7 +185,7 @@ export default {
         .then(res => {
           console.log(res)
           this.loading = false;
-          this.queryTodayUser()
+          this.queryTodayUserClick()
         })
         .catch((err) => {
           this.loading = false;
@@ -235,7 +240,7 @@ export default {
     }
 
     this.date = new Date().Format("yyyy-MM-dd");
-    this.queryTodayUser()
+    this.queryTodayUserClick()
   }
 }
 </script>

@@ -40,6 +40,7 @@
     >
       <el-table-column
         type="index"
+        :index="indexMethod"
         width="50">
       </el-table-column>
       <el-table-column
@@ -166,6 +167,10 @@ export default {
     }
   },
   methods: {
+    //序号
+    indexMethod(index) {
+      return index+1  +((this.currentPage-1)*this.pageSize);
+    },
     toRouter(val) {
       this.$router.push(val);
     },

@@ -23,8 +23,8 @@
       </el-upload>
 
       <el-button type="info" size="small" @click="resetPassword">重置密码</el-button>
-      <el-button type="danger " size="small" @click="sealAccount">封号</el-button>
-      <el-button type="warning" size="small" @click="unsealAccount">解封</el-button>
+      <el-button type="danger " size="small" @click="sealAccount">账号锁定</el-button>
+      <el-button type="warning" size="small" @click="unsealAccount">账号解锁</el-button>
     </div>
 
     <el-table

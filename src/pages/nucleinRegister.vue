@@ -15,7 +15,7 @@
     </div>
     <div class="toolbar">
       <el-button type="primary" size="small" @click="generateTodayUser">生成今日登记表</el-button>
-      <el-button type="warning" size="small" @click="helpEmployeeRegister">帮不便员工登记</el-button>
+      <el-button type="warning" size="small" @click="helpEmployeeRegister">手工登记</el-button>
     </div>
     <div class="tableTop">
       <div><span>未登记</span><font color="red">{{ this.unregisteredNum }}</font></div>
@@ -70,6 +70,10 @@
           </el-tag>
 
         </template>
+      </el-table-column>
+      <el-table-column
+        prop="checkTime"
+        label="登记时间">
       </el-table-column>
     </el-table>
 
